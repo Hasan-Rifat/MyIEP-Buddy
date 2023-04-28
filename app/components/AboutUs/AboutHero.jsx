@@ -18,7 +18,7 @@ const AboutHero = () => {
 
           <div className="container mx-auto px-20 z-30">
             <div class="flex flex-col justify-center items-center px-3">
-              <h1 class=" text-center text-3xl md:text-5xl text-white font-bold drop-shadow-lg">
+              <h1 class=" text-center text-3xl md:text-5xl text-white font-bold drop-shadow-lg mb-[24px]">
                 About MyIEP Buddy
               </h1>
               <p class="mt-5 text-center text-2xl text-white opacity-100">
