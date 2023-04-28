@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const AboutHero = () => {
   return (
-    <section className="py-[88px] ">
+    <section className="">
       <div className="relative w-full h-[557px]">
         <div class="w-full h-full flex justify-center items-center overflow-hidden absolute left-0 top-0 z-10 bg-black ">
           <Image
