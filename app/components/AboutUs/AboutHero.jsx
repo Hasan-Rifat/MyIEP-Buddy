@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import aboutHero from "../../../images/aboutImg/aboutHero.svg";
 import Image from "next/image";
