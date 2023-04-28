@@ -1,18 +1,21 @@
 import React from "react";
-import aboutHero from "../../../../images/aboutHero.svg";
+import aboutHero from "../../../images/aboutHero.svg";
 import Image from "next/image";
 
 const AboutHero = () => {
   return (
     <section className="py-[88px] ">
-      <div className="">
-        <div class="w-full h-[557px] flex justify-center items-center overflow-hidden relative bg-black z-10">
+      <div className="relative w-full h-[557px]">
+        <div class="w-full h-full flex justify-center items-center overflow-hidden absolute left-0 top-0 z-10 bg-black ">
           <Image
             src={aboutHero}
             alt="Hero Image"
             className="object-cover"
             fill
           />
+
+          <div className="bg-black h-full w-full opacity-50 absolute left-0 top-0"></div>
+
           <div className="container mx-auto px-20 z-30">
             <div class="flex flex-col justify-center items-center px-3">
               <h1 class=" text-center text-3xl md:text-5xl text-white font-bold drop-shadow-lg">

@@ -1,4 +1,4 @@
-import AboutHero from "@/app/components/shared/AboutUs/AboutHero";
+import AboutHero from "@/app/components/AboutUs/AboutHero";
 import React from "react";
 
 const AboutUs = () => {
