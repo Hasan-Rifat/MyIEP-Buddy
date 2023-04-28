@@ -6,14 +6,14 @@ const AboutHero = () => {
   return (
     <section className="py-[88px] ">
       <div className="">
-        <div class="w-full h-[557px] flex justify-center items-center overflow-hidden relative bg-black bg-opacity-50">
+        <div class="w-full h-[557px] flex justify-center items-center overflow-hidden relative bg-black z-10">
           <Image
             src={aboutHero}
             alt="Hero Image"
             className="object-cover"
             fill
           />
-          <div className="container mx-auto px-20">
+          <div className="container mx-auto px-20 z-30">
             <div class="flex flex-col justify-center items-center px-3">
               <h1 class=" text-center text-3xl md:text-5xl text-white font-bold drop-shadow-lg">
                 About MyIEP Buddy
