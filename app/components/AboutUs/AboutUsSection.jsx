@@ -3,10 +3,19 @@ import React from "react";
 import pencil from "../../../images/aboutImg/pencil.svg";
 import aboutUs from "../../../images/aboutImg/about us.svg";
 
+import { DM_Sans } from "@next/font/google";
+
+const dmSans = DM_Sans({
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  display: "swap",
+});
+
 const AboutUsSection = () => {
   return (
-    <section>
-      <div className="px-20">
+    <section className={dmSans.className}>
+      <div className="px-5 lg:px-20 pt-[110px] pb-[146px]">
         <div className="max-w-[1283px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-[60px] ">
             <div className="col-span-3 order-last lg:order-first">

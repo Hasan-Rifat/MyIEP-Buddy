@@ -1,9 +1,17 @@
 import aboutHero from "../../../images/aboutImg/aboutHero.svg";
 import Image from "next/image";
+import { Red_Hat_Display } from "@next/font/google";
+
+const redFont = Red_Hat_Display({
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  display: "swap",
+});
 
 const AboutHero = () => {
   return (
-    <section className="">
+    <section className={redFont.className}>
       <div className="relative w-full h-[557px]">
         <div class="w-full h-full flex justify-center items-center overflow-hidden absolute left-0 top-0 z-10 bg-black ">
           <Image
