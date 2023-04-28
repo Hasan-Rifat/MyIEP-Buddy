@@ -10,7 +10,7 @@ const AboutHero = () => {
           <Image
             src={aboutHero}
             alt="Hero Image"
-            className="object-cover"
+            className="object-cover object-top h-full w-full"
             fill
           />
 
