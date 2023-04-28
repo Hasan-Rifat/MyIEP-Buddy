@@ -2,7 +2,7 @@ import React from "react";
 
 const affiliateProgram = () => {
   return (
-    <section className="py-[230px]">
+    <section className="py-[139px]">
       <div className="container mx-auto">
         <div className="mx-auto max-w-[597px] pt-[33px] pb-[82px] bg-[#fcfcfd] rounded-[10px] shadow-[0_10px_15px_rgba(0,0,0,0.05)]">
           <h2 className="text-[40px] leading-[56px] text-black font-medium text-center mb-10">
