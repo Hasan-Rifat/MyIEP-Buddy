@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import React from "react";
 import aboutHero from "../../../images/aboutImg/aboutHero.svg";
 import Image from "next/image";
@@ -23,8 +22,8 @@ const AboutHero = () => {
                 About MyIEP Buddy
               </h1>
               <p class="mt-5 text-center text-2xl text-white opacity-100">
-                Lorem Ipsum has been the industry's standard dummy text ever
-                since the 1500s
+                Lorem Ipsum has been the industry&apos;s standard dummy text
+                ever since the 1500s
               </p>
             </div>
           </div>
