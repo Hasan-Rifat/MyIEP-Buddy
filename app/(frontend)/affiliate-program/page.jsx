@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const affiliateProgram = () => {
@@ -58,7 +59,12 @@ const affiliateProgram = () => {
                 />
                 <p className="ml-2 text-sm text-[#111827] max-w-[236.68px]">
                   I agree to the{" "}
-                  <span className="text-[#0060AF]">Terms and Conditions</span>{" "}
+                  <Link
+                    href={"/terms-and-conditions"}
+                    className="text-[#0060AF]"
+                  >
+                    Terms and Conditions
+                  </Link>{" "}
                   and <span className="text-[#0060AF]">Privacy Policy</span>
                 </p>
               </label>
