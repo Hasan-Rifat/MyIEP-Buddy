@@ -62,52 +62,52 @@ export default function Navbar() {
                           Home
                         </p>
                       </Link>
-                      <Link href={"/"}>
+                      <Link href={"/about-us"}>
                         <p className=" py-6   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
                           About us
                         </p>
                       </Link>
-                      <Link href={"/"}>
+                      <Link href={"/goals"}>
                         <p className=" py-6   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
                           Goals
                         </p>
                       </Link>
-                      <Link href={"/"}>
+                      <Link href={"/levels"}>
                         <p className=" py-6   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
                           Levels
                         </p>
                       </Link>
-                      <Link href={"/"}>
+                      <Link href={"/progress"}>
                         <p className=" py-6   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
                           Progress
                         </p>
                       </Link>
-                      <Link href={"/"}>
+                      <Link href={"/worksheet"}>
                         <p className=" py-6   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
                           Worksheet
                         </p>
                       </Link>
-                      <Link href={"/"}>
+                      <Link href={"/blog"}>
                         <p className=" py-6   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
                           Blog
                         </p>
                       </Link>
-                      <Link href={"/"}>
+                      <Link href={"/faq"}>
                         <p className=" py-6   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
                           FAQ
                         </p>
                       </Link>
-                      <Link href={"/"}>
+                      <Link href={"/pricing"}>
                         <p className=" py-6   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
                           Pricing
                         </p>
                       </Link>
-                      <Link href={"/"}>
+                      <Link href={"/contact"}>
                         <p className=" py-6   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
                           Contact
                         </p>
                       </Link>
-                      <Link href={"/"}>
+                      <Link href={"/affiliate"}>
                         <p className=" py-6   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
                           Affiliate
                         </p>
@@ -198,52 +198,52 @@ export default function Navbar() {
                     Home
                   </p>
                 </Link>
-                <Link href={"/"}>
+                <Link href={"/about-us"}>
                   <p className=" py-2   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
                     About us
                   </p>
                 </Link>
-                <Link href={"/"}>
+                <Link href={"/goals"}>
                   <p className=" py-2   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
                     Goals
                   </p>
                 </Link>
-                <Link href={"/"}>
+                <Link href={"/levels"}>
                   <p className=" py-2   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
                     Levels
                   </p>
                 </Link>
-                <Link href={"/"}>
+                <Link href={"/progress"}>
                   <p className=" py-2   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
                     Progress
                   </p>
                 </Link>
-                <Link href={"/"}>
+                <Link href={"/worksheet"}>
                   <p className=" py-2   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
                     Worksheet
                   </p>
                 </Link>
-                <Link href={"/"}>
+                <Link href={"/blog"}>
                   <p className=" py-2   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
                     Blog
                   </p>
                 </Link>
-                <Link href={"/"}>
+                <Link href={"/faq"}>
                   <p className=" py-2   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
                     FAQ
                   </p>
                 </Link>
-                <Link href={"/"}>
+                <Link href={"/pricing"}>
                   <p className=" py-2 2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
                     Pricing
                   </p>
                 </Link>
-                <Link href={"/"}>
+                <Link href={"/contact"}>
                   <p className=" py-2   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
                     Contact
                   </p>
                 </Link>
-                <Link href={"/"}>
+                <Link href={"/affiliate"}>
                   <p className=" py-2   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
                     Affiliate
                   </p>
