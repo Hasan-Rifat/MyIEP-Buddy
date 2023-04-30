@@ -6,8 +6,7 @@ import { useEffect, useRef, useState } from "react";
 // Image Import
 import logo from "../../../images/logo/logo.png";
 
-// Icons Import
-import { MdKeyboardArrowRight } from "react-icons/md";
+
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -37,7 +36,7 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="z-50 sticky top-0 ">
+      <div className="z-[100000000] sticky top-0 bg-white ">
         <nav className="container mx-auto 2xl:px-[14px] px-2   py-2  flex  items-center justify-between  transition-all duration-300 ease-in-out">
           <div
             className={`transition-all   py-4 lg:py-0  duration-300  flex  xl:justify-end ease-in-out cursor-pointer`}
@@ -160,17 +159,15 @@ export default function Navbar() {
 
           {/* Mobile Menu */}
           <div
-            className={`w-full fixed xl:hidden transition-all duration-300 ease-in-out h-screen top-0 bottom-0 left-0 right-0 bg-black opacity-40  ${
-              isMenuOpen ? "block" : "hidden"
-            }`}
+            className={`w-full fixed xl:hidden transition-all duration-300 ease-in-out h-screen top-0 bottom-0 left-0 right-0 bg-black opacity-40  ${isMenuOpen ? "block" : "hidden"
+              }`}
           ></div>
           <div
             ref={ref}
-            className={`${
-              isMenuOpen
-                ? "left-0 bottom-0 top-0 z-20 "
-                : "-left-96 bottom-0 top-0"
-            } transition-all duration-300 ease-in-out fixed xl:hidden  flex flex-col w-full md:w-1/2  max-w-sm py-6 px-6 bg-white overflow-y-auto`}
+            className={`${isMenuOpen
+              ? "left-0 bottom-0 top-0 z-20 "
+              : "-left-96 bottom-0 top-0"
+              } transition-all duration-300 ease-in-out fixed xl:hidden  flex flex-col w-full md:w-1/2  max-w-sm py-6 px-6 bg-white overflow-y-auto`}
           >
             <div className="h-full flex flex-col gap-3  items-start pl-1">
               <div className=" flex justify-end items-end w-full">
