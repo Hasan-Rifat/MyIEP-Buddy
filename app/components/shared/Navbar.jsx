@@ -119,12 +119,18 @@ export default function Navbar() {
             </div>
             {/* Button */}
             <div className=" flex items-center gap-6  ">
-              <button className=" py-[7px] font-medium 2xl:px-7 px-5 border border-[#43A4F5] hover:bg-[#43A4F5] hover:text-black cursor-pointer text-[#43A4F5] rounded-[10px]">
+              <Link
+                href={"/sign-in"}
+                className=" py-[7px] font-medium 2xl:px-7 px-5 border border-[#43A4F5] hover:bg-[#43A4F5] hover:text-black cursor-pointer text-[#43A4F5] rounded-[10px]"
+              >
                 Sign in
-              </button>
-              <button className=" py-[7px] font-medium 2xl:px-7 cursor-pointer hover:bg-transparent hover:text-[#43A4F5]  border border-[#43A4F5] bg-[#43A4F5] text-black rounded-[10px] px-5 ">
+              </Link>
+              <Link
+                href={"/sign-up"}
+                className=" py-[7px] font-medium 2xl:px-7 cursor-pointer hover:bg-transparent hover:text-[#43A4F5]  border border-[#43A4F5] bg-[#43A4F5] text-black rounded-[10px] px-5 "
+              >
                 Sign up
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -252,12 +258,18 @@ export default function Navbar() {
 
               {/* Button */}
               <div className=" flex flex-col items-center gap-6  ">
-                <button className=" py-[7px] font-medium 2xl:px-7 px-5 border border-[#43A4F5] hover:bg-[#43A4F5] hover:text-black cursor-pointer text-[#43A4F5] rounded-[10px]">
+                <Link
+                  href={"/sign-in"}
+                  className=" py-[7px] font-medium 2xl:px-7 px-5 border border-[#43A4F5] hover:bg-[#43A4F5] hover:text-black cursor-pointer text-[#43A4F5] rounded-[10px]"
+                >
                   Sign in
-                </button>
-                <button className=" py-[7px] font-medium 2xl:px-7 cursor-pointer hover:bg-transparent hover:text-[#43A4F5]  border border-[#43A4F5] bg-[#43A4F5] text-black rounded-[10px] px-5 ">
+                </Link>
+                <Link
+                  href={"/sign-up"}
+                  className=" py-[7px] font-medium 2xl:px-7 cursor-pointer hover:bg-transparent hover:text-[#43A4F5]  border border-[#43A4F5] bg-[#43A4F5] text-black rounded-[10px] px-5 "
+                >
                   Sign up
-                </button>
+                </Link>
               </div>
             </div>
           </div>
