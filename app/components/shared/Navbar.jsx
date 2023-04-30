@@ -8,9 +8,6 @@ import { useEffect, useRef, useState } from "react"
 // Image Import
 import logo from '../../../images/logo/logo.png'
 
-// Icons Import
-import { MdKeyboardArrowRight } from "react-icons/md";
-
 
 export default function Navbar() {
 
@@ -66,7 +63,7 @@ export default function Navbar() {
                                             ><p className=" py-6   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">About us</p>
                                             </Link>
                                             <Link
-                                                href={'/'}
+                                                href={'/terms'}
                                             ><p className=" py-6   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">Goals</p>
                                             </Link>
                                             <Link
@@ -82,19 +79,19 @@ export default function Navbar() {
                                             ><p className=" py-6   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">Worksheet</p>
                                             </Link>
                                             <Link
-                                                href={'/'}
+                                                href={'/blog'}
                                             ><p className=" py-6   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">Blog</p>
                                             </Link>
                                             <Link
-                                                href={'/'}
+                                                href={'/faq'}
                                             ><p className=" py-6   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">FAQ</p>
                                             </Link>
                                             <Link
-                                                href={'/'}
+                                                href={'/suggestion'}
                                             ><p className=" py-6   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">Pricing</p>
                                             </Link>
                                             <Link
-                                                href={'/'}
+                                                href={'/contact'}
                                             ><p className=" py-6   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">Contact</p>
                                             </Link>
                                             <Link
@@ -153,7 +150,7 @@ export default function Navbar() {
                                 ><p className=" py-2   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">About us</p>
                                 </Link>
                                 <Link
-                                    href={'/'}
+                                    href={'/terms'}
                                 ><p className=" py-2   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">Goals</p>
                                 </Link>
                                 <Link
@@ -169,19 +166,19 @@ export default function Navbar() {
                                 ><p className=" py-2   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">Worksheet</p>
                                 </Link>
                                 <Link
-                                    href={'/'}
+                                    href={'/blog'}
                                 ><p className=" py-2   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">Blog</p>
                                 </Link>
                                 <Link
-                                    href={'/'}
+                                    href={'/faq'}
                                 ><p className=" py-2   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">FAQ</p>
                                 </Link>
                                 <Link
-                                    href={'/'}
+                                    href={'/suggestion'}
                                 ><p className=" py-2 2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">Pricing</p>
                                 </Link>
                                 <Link
-                                    href={'/'}
+                                    href={'/contact'}
                                 ><p className=" py-2   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">Contact</p>
                                 </Link>
                                 <Link
@@ -202,3 +199,4 @@ export default function Navbar() {
         </>
     )
 }
+
