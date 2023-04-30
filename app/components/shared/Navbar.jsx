@@ -66,7 +66,7 @@ export default function Navbar() {
                           About us
                         </p>
                       </Link>
-                      <Link href={"/goals"}>
+                      <Link href={"/terms-and-conditions"}>
                         <p className=" py-6   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
                           Goals
                         </p>
@@ -206,7 +206,7 @@ export default function Navbar() {
                     About us
                   </p>
                 </Link>
-                <Link href={"/goals"}>
+                <Link href={"/terms-and-conditions"}>
                   <p className=" py-2   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
                     Goals
                   </p>
