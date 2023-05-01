@@ -4,7 +4,9 @@ import DashboardNav from "../components/shared/DashboardNav";
 
 export default function Layout({ children }) {
   // Side Navbar
-  const [close, setClose] = useState(JSON.parse(localStorage.getItem("close")));
+  const [close, setClose] = useState(
+    typeof window !== "undefined" && JSON.parse(localStorage.getItem("close"))
+  );
   useEffect(() => {
     if (typeof window !== "undefined") {
       localStorage.setItem("close", JSON.stringify(close));
