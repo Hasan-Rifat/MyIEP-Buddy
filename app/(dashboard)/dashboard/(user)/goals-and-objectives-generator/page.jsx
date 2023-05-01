@@ -3,14 +3,12 @@ import Image from 'next/image';
 import { useState } from 'react';
 
 // Image import
-import img from '../../../../images/dashboard/goalsAndObj/Sales-target.svg'
-import img2 from '../../../../images/dashboard/goalsAndObj/goals2.svg'
+import img from '../../../../../images/dashboard/user/goalsAndObj/Sales-target.svg'
+import img2 from '../../../../../images/dashboard/user/goalsAndObj/goals2.svg'
 
 
 const GoalsGenerator = () => {
-
   const [next, setNext] = useState(true)
-
 
   return <div className=" min-h-screen  bg-[#F2F2F2]  px-10 pt-5 flex items-center gap-10">
 
@@ -38,8 +36,6 @@ const GoalsGenerator = () => {
           <h1 className={` font-medium ${next ? 'text-[#555555]' : 'text-[#A9F8FD]'} `}>Result</h1>
         </div>
       </ol>
-
-
 
       {
         next ? <from>
@@ -107,7 +103,6 @@ const GoalsGenerator = () => {
           </div>
         </div>
       }
-
     </div>
   </div>;
 };

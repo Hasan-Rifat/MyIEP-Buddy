@@ -1,16 +1,23 @@
 "use client";
 import { useEffect, useState } from "react";
-import DashboardNav from "../components/shared/DashboardNav";
-import DashboardTopNav from "../components/shared/DashboardTopNav";
+import DashboardNav from "../../../components/shared/DashboardNav";
+import DashboardTopNav from "@/app/components/shared/DashboardTopNav";
 
 export default function Layout({ children }) {
 
   // Side Navbar
-  const [close, setClose] = useState(JSON.parse(localStorage.getItem("close")));
+  const [close, setClose] = useState(
+    typeof window !== "undefined" && JSON.parse(localStorage.getItem("close"))
+  );
   useEffect(() => {
-    localStorage.setItem("close", JSON.stringify(close));
-    setClose(close);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("close", JSON.stringify(close));
+      setClose(close);
+    }
   }, [close]);
+
+
+
 
   return (
     <section>

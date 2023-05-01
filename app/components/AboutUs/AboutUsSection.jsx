@@ -18,7 +18,7 @@ const AboutUsSection = () => {
       <div className="px-5 lg:px-20 pt-[110px] pb-[146px]">
         <div className="max-w-[1283px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-[60px] ">
-            <div className="col-span-3 order-last lg:order-first">
+            <div className="col-span-3 ">
               <div>
                 <Image src={pencil} width={60} height={60} alt="pencil icon" />
               </div>
@@ -53,7 +53,7 @@ const AboutUsSection = () => {
                 </div>
               </div>
             </div>
-            <div className="col-span-2 order-first lg:order-l">
+            <div className="col-span-2 ">
               <Image src={aboutUs} alt="about us" />
             </div>
           </div>

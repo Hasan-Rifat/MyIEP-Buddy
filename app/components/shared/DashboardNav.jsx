@@ -44,7 +44,7 @@ const DashboardNav = ({ close, setClose }) => {
     },
     {
       Route: "Progress Monitoring Ideas Generator",
-      Path: "/dashboard/progress-monitoring-ideas",
+      Path: "/dashboard/monitoring-ideas-generator",
       icon: icon5,
       height: "11rem",
       id: 5,
