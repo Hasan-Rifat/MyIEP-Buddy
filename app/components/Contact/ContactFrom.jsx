@@ -8,6 +8,7 @@ import circle2 from "../../../images/logo/circle2.svg";
 import { BsTwitter } from "react-icons/bs";
 import { FaFacebookF } from "react-icons/fa";
 import { AiFillInstagram } from "react-icons/ai";
+import Link from "next/link";
 const ContactFrom = () => {
   return (
     <section>
@@ -42,15 +43,21 @@ const ContactFrom = () => {
                 <p>08123123123</p>
                 <h2 className=" text-xl mt-5 mb-2">Social Media</h2>
                 <div className="flex items-center gap-5 mt-7 sm:mt-0">
-                  <div className=" w-[34px] h-[34px] rounded-full flex items-center justify-center text-xs border border-[#ffffff] ">
-                    <AiFillInstagram />
-                  </div>
-                  <div className=" w-[34px] h-[34px] rounded-full flex items-center justify-center text-xs  border border-[#ffffff] ">
-                    <FaFacebookF />
-                  </div>
-                  <div className=" w-[34px] h-[34px] rounded-full flex items-center justify-center text-xs  border border-[#ffffff]">
-                    <BsTwitter />
-                  </div>
+                  <Link href={"https://www.instagram.com/myiepbuddy"}>
+                    <div className=" w-[34px] h-[34px] rounded-full flex items-center justify-center text-xs border border-[#ffffff] ">
+                      <AiFillInstagram size={13} />
+                    </div>
+                  </Link>
+                  <Link href={"https://www.facebook.com/myiepbuddy"}>
+                    <div className=" w-[34px] h-[34px] rounded-full flex items-center justify-center text-xs  border border-[#ffffff]">
+                      <FaFacebookF size={13} />
+                    </div>
+                  </Link>
+                  <Link href={"https://twitter.com/myiepbuddy"}>
+                    <div className=" w-[34px] h-[34px] rounded-full flex items-center justify-center text-xs  border border-[#ffffff]">
+                      <BsTwitter size={13} />
+                    </div>
+                  </Link>
                 </div>
               </div>
             </div>
