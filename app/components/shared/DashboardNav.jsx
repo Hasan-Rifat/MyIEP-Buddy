@@ -1,66 +1,57 @@
-"use client";
-import { useEffect, useState } from "react";
-import { RiAppsFill } from "react-icons/ri";
-import { BsChatDotsFill } from "react-icons/bs";
-import { BiBookAlt } from "react-icons/bi";
-import { RiContactsFill } from "react-icons/ri";
-import {
-  MdKeyboardArrowDown,
-  MdOutlineKeyboardArrowRight,
-} from "react-icons/md";
-
 import Link from "next/link";
 import Image from "next/image";
 
+// Image import
+import icon1 from '../../../images/dashboard/DIcon1.svg'
+import icon2 from '../../../images/dashboard/DIcon2.svg'
+import icon3 from '../../../images/dashboard/DIcon3.svg'
+import icon4 from '../../../images/dashboard/DIcon4.svg'
+import icon5 from '../../../images/dashboard/DIcon5.svg'
+
+
 // Image Import
 import logo from "../../../images/logo/logo.png";
-const DashboardNav = () => {
-  const [DropdownEnter, setDropdownEnter] = useState(-1);
+const DashboardNav = ({ close, setClose }) => {
 
   const main_menu = [
     {
       Route: "Dashboard",
       Path: "/dashboard",
-      icon: <RiAppsFill />,
+      icon: icon2,
       height: "11rem",
       id: 1,
     },
     {
       Route: "Goals and Objectives Generator",
-      Path: "/dashboard/goals-generator",
-      icon: <BsChatDotsFill />,
+      Path: "/dashboard/goals-and-objectives-generator",
+      icon: icon1,
       height: "11rem",
       id: 2,
     },
     {
       Route: "Accommodations Generator",
       Path: "/dashboard/accommodations-generator",
-      icon: <BiBookAlt />,
+      icon: icon3,
       height: "11rem",
       id: 3,
     },
     {
       Route: "Present Levels Generator",
       Path: "/dashboard/present-levels-generator",
-      icon: <RiContactsFill />,
+      icon: icon4,
       height: "11rem",
       id: 4,
     },
     {
-      Route: "Progress Monitoring Ideas",
+      Route: "Progress Monitoring Ideas Generator",
       Path: "/dashboard/progress-monitoring-ideas",
-      icon: <RiContactsFill />,
+      icon: icon5,
       height: "11rem",
       id: 5,
     },
   ];
 
-  // Side Navbar
-  const [close, setClose] = useState(JSON.parse(localStorage.getItem("close")));
-  useEffect(() => {
-    localStorage.setItem("close", JSON.stringify(close));
-    setClose(close);
-  }, [close]);
+
 
   return (
     <div className=" h-full ">
@@ -70,24 +61,24 @@ const DashboardNav = () => {
           }`}
       >
         <div className=" w-full flex flex-col justify-between ">
-          <Link
-            href="/dashboard"
+
+          {/* Bar icons */}
+          <div className={` absolute  top-4 right-[1.2rem] group cursor-pointer `}>
+            <div onClick={() => {
+              setClose(!close);
+            }}>
+              <div className={`h-[2px] w-[21px] bg-black mb-1 `}></div>
+              <div className={`h-[2px]  bg-black mb-1 transition-all duration-500 ease-in-out ${close ? 'w-[21px]' : 'w-[15px] group-hover:w-[21px]'}`}></div>
+              <div className={`h-[2px]  bg-black transition-all duration-500 ease-in-out ${close ? ' w-[21px]' : 'w-2 group-hover:w-[21px]'}`}></div>
+            </div>
+          </div>
+
+          <div
             className={`w-full  ${close ? "px-0" : "px-4"}`}
           >
             <div
               class={` w-full flex flex-col justify-center items-center mt-16  h-24 `}
             >
-              {/* Bar icons */}
-              <div className={` absolute  top-4 right-[1.2rem] group `}>
-                <div onClick={() => {
-                  setClose(!close);
-                  setDropdownEnter(-1);
-                }}>
-                  <div className={`h-[2px] w-[21px] bg-black mb-1 `}></div>
-                  <div className={`h-[2px]  bg-black mb-1 transition-all duration-500 ease-in-out ${close ? 'w-[21px]' : 'w-[15px] group-hover:w-[21px]'}`}></div>
-                  <div className={`h-[2px]  bg-black transition-all duration-500 ease-in-out ${close ? ' w-[21px]' : 'w-2 group-hover:w-[21px]'}`}></div>
-                </div>
-              </div>
 
               <div >
                 <Image src={logo} alt="Picture of the author" className={` h-16 `} />
@@ -105,7 +96,7 @@ const DashboardNav = () => {
               </div>
 
             </div>
-          </Link>
+          </div>
 
           {/* Menu Items */}
 
@@ -115,8 +106,8 @@ const DashboardNav = () => {
                 <>
                   <Link
                     href={menu?.Path}
-                    className={({ isActive }) =>
-                      `w-full mt-3 hover:bg-[#5a4e4c]  ${isActive ? "bg-[#5a4e4c]  rounded-b-none" : null
+                    className={
+                      `w-full mt-3  rounded-b-none
                       }`
                     }
                   >
@@ -125,27 +116,25 @@ const DashboardNav = () => {
                     >
                       <div className={` ${close ? " py-1 " : "py-1"}`}>
                         <div
-                          class={` text-xl p-1   rounded text-[#405859]  stroke-current  ${close && "mx-auto "
-                            } `}
+                          class={` text-xl p-0.5  rounded text-[#405859] w-6 `}
                         >
-                          {menu?.icon}
+
+                          <Image src={menu?.icon} alt="Picture of the author" className=" w-6" />
+
                         </div>
                       </div>
                       <div
-                        onClick={() =>
-                          setDropdownEnter(DropdownEnter >= 0 ? -1 : index)
-                        }
-                        className=" overflow-hidden flex h-6 w-[80%]  "
+                        className=" overflow-hidden flex h-6  w-[100%]  "
                       >
                         <span
-                          className={`transition-all  w-[80%]  duration-500 ease-out overflow-hidden text-sm font-semibold ${close
+                          className={`transition-all  w-[100%]  duration-500 ease-out overflow-hidden text-sm font-semibold ${close
                             ? " translate-x-[-24rem] -ml-28  "
                             : "duration-500 translate-x-0 pl-2"
                             }`}
                         >
                           {menu?.Route}
                         </span>
-                        <div
+                        {/* <div
                           className={`inline-flex h-full mt-1 float-right ${menu?.Service ? "block" : "hidden"
                             }  `}
                         >
@@ -154,7 +143,7 @@ const DashboardNav = () => {
                           ) : (
                             <MdOutlineKeyboardArrowRight className=" text-lg" />
                           )}
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </Link>
