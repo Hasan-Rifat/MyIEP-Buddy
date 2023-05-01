@@ -1,7 +1,13 @@
 import React from "react";
+import AdminNav from "@/app/components/shared/AdminNav";
 
 const layout = ({ children }) => {
-  return <>{children}</>;
+  return (
+    <>
+      <AdminNav />
+      {children}
+    </>
+  );
 };
 
 export default layout;

@@ -18,9 +18,8 @@ const poppins = Poppins({
 const AdminDashboard = () => {
   return (
     <section className={`bg-[#f2f2f2] ${dmSans.className}`}>
-      <div className="h-[80px] bg-white"></div>
-      <div className="container mx-auto ">
-        <div className="max-w-[1026px] mx-auto pt-[42px] pb-[35px] px-5">
+      <div className="container mx-auto xl:px-20 px-5">
+        <div className="max-w-[1026px] mx-auto pt-[42px] pb-[35px]">
           <div>
             <form>
               <input
