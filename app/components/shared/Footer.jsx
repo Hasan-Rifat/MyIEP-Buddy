@@ -30,7 +30,9 @@ export default function Footer() {
             <h1 className=" text-[#4D4D4D] text-2xl font-semibold mb-5">
               Quick Links
             </h1>
-            <p className=" text-[#4D4D4D] text-lg mb-4">Tream & Conditions</p>
+            <p className=" text-[#4D4D4D] text-lg mb-4">
+              <Link href={"/terms-and-conditions"}>Tream & Conditions</Link>
+            </p>
             <p className=" text-[#4D4D4D] text-lg mb-4">Privacy Policy</p>
             <p className=" text-[#4D4D4D] text-lg xl:w-1/2 ">
               Affiliate Program ( Commission 5 % )
