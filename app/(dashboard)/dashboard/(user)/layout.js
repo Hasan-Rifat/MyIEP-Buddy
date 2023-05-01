@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import DashboardNav from "../components/shared/DashboardNav";
+import DashboardNav from "../../../components/shared/DashboardNav";
 
 export default function Layout({ children }) {
   // Side Navbar
