@@ -97,7 +97,6 @@ export default function page() {
                         />
                     </div>
 
-
                     <div className=' mt-4'>
                         <label className=' text-[#5F5F5F] ' htmlFor="date">IEP Date </label>
                         <input name='date' id='date' type="date" placeholder='Select Date' className=' bg-[#F5F5F5] w-full p-3 mt-2 rounded-lg outline-none border border-[#BFBFBF]' />
