@@ -9,14 +9,14 @@ import img from '../../../../../images/dashboard/user/accommodations/Layer.svg'
 const AccommodationsGenerator = () => {
   const [next, setNext] = useState(true)
 
-  return <div className=" min-h-screen  bg-[#F2F2F2]  px-10 pt-5 flex items-center gap-10">
+  return <div className=" min-h-screen  bg-[#F2F2F2]  sm:px-10 px-2 pt-5 lg:flex items-center gap-10">
 
-    <div className=' flex flex-col items-center  w-2/6 transition-all duration-200 ease-out'>
+    <div className=' flex flex-col items-center  lg:w-2/6 mb-10 transition-all duration-200 ease-out'>
       <Image src={img} alt="Picture of the author" />
       <h1 className=' text-[#616161] font-medium text-2xl mt-5 mb-3'>IEP Accommodations Generator</h1>
       <p className=' text-[#878787] w-9/12 mx-auto'>1960s with the release of Letraset sheets containing Lorem Ipsum passages</p>
     </div>
-    <div className=' w-4/6 bg-white mb-10  py-12 px-7 rounded-3xl'>
+    <div className=' lg:w-4/6 bg-white mb-10  py-12 px-7 rounded-3xl'>
       <ol class="flex items-center justify-center ">
         <div className=' flex flex-col items-start justify-center'>
           <li class={`flex  items-center text-blue-600 after:content-[''] after:w-10 after:h-1 after:border-b after:border-[#A9F8FD] after:border-4  after:rounded-l-full`}>
