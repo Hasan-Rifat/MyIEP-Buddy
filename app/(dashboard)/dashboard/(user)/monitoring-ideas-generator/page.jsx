@@ -18,14 +18,14 @@ export default function page() {
 
 
         {
-            next && <div className=' sm:flex flex-col items-center  lg:w-2/6 hidden  mb-10 transition-all duration-200 ease-out'>
+            next && <div className=' flex flex-col items-center  lg:w-2/6   mb-10 transition-all duration-200 ease-out'>
                 <Image src={img} alt="Picture of the author" />
                 <h1 className=' text-[#616161] font-medium text-2xl mt-5 mb-3'>Progress Monitoring Ideas Generator</h1>
                 <p className=' text-[#878787] w-9/12 mx-auto'>1960s with the release of Letraset sheets containing Lorem Ipsum passages</p>
             </div>
         }
 
-        <div className={` ${next ? 'lg:w-4/6 w-full' : 'w-full'} sm:bg-white bg-[#A9F8FD]  mb-10  py-12 px-7 rounded-3xl`}>
+        <div className={` ${next ? 'lg:w-4/6 w-full' : 'w-full'} bg-white  mb-10  py-12 px-7 rounded-3xl`}>
             <ol class="sm:flex items-center justify-center hidden  ">
                 <div className=' flex flex-col items-start justify-center'>
                     <li class={`flex  items-center text-blue-600 after:content-[''] after:w-10 after:h-1 after:border-b after:border-[#A9F8FD] after:border-4  after:rounded-l-full`}>

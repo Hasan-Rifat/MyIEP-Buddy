@@ -176,8 +176,8 @@ export default function Navbar() {
           <div
             ref={ref}
             className={`${isMenuOpen
-                ? "left-0 bottom-0 top-0 z-20 "
-                : "-left-96 bottom-0 top-0"
+              ? "left-0 bottom-0 top-0 z-20 "
+              : "-left-96 bottom-0 top-0"
               } transition-all duration-300 ease-in-out fixed xl:hidden  flex flex-col w-full md:w-1/2  max-w-sm py-6 px-6 bg-white overflow-y-auto`}
           >
             <div className="h-full flex flex-col gap-3  items-start pl-1">
