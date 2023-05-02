@@ -6,18 +6,27 @@ import React from 'react';
 // Image import
 import img from '../../../../../images/dashboard/user/monitor/monitor.svg'
 
+// Icons import
+import { FaTrash } from 'react-icons/fa';
+import { RiTodoLine } from 'react-icons/ri';
+import { BsPrinter } from 'react-icons/bs';
+
 export default function page() {
     const [next, setNext] = useState(true)
 
-    return <div className=" min-h-screen  bg-[#F2F2F2]  px-10 pt-5 flex items-center gap-10">
+    return <div className=" min-h-screen  bg-[#F2F2F2]  sm:px-10 px-2 pt-5 lg:flex items-center gap-10">
 
-        <div className=' flex flex-col items-center  w-2/6 transition-all duration-200 ease-out'>
-            <Image src={img} alt="Picture of the author" />
-            <h1 className=' text-[#616161] font-medium text-2xl mt-5 mb-3'>Progress Monitoring Ideas Generator</h1>
-            <p className=' text-[#878787] w-9/12 mx-auto'>1960s with the release of Letraset sheets containing Lorem Ipsum passages</p>
-        </div>
-        <div className=' w-4/6 bg-white mb-10  py-12 px-7 rounded-3xl'>
-            <ol class="flex items-center justify-center ">
+
+        {
+            next && <div className=' sm:flex flex-col items-center  lg:w-2/6 hidden  mb-10 transition-all duration-200 ease-out'>
+                <Image src={img} alt="Picture of the author" />
+                <h1 className=' text-[#616161] font-medium text-2xl mt-5 mb-3'>Progress Monitoring Ideas Generator</h1>
+                <p className=' text-[#878787] w-9/12 mx-auto'>1960s with the release of Letraset sheets containing Lorem Ipsum passages</p>
+            </div>
+        }
+
+        <div className={` ${next ? 'lg:w-4/6 w-full' : 'w-full'} sm:bg-white bg-[#A9F8FD]  mb-10  py-12 px-7 rounded-3xl`}>
+            <ol class="sm:flex items-center justify-center hidden  ">
                 <div className=' flex flex-col items-start justify-center'>
                     <li class={`flex  items-center text-blue-600 after:content-[''] after:w-10 after:h-1 after:border-b after:border-[#A9F8FD] after:border-4  after:rounded-l-full`}>
                         <span class={`flex text-xl text-[#555555] font-medium items-center justify-center w-10 h-10 bg-[#A9F8FD]  rounded-full lg:h-12 lg:w-12  shrink-0`}>
@@ -95,64 +104,82 @@ export default function page() {
 
 
 
-                    <div className=' flex items-center justify-between mt-4'>
-                        <div class="flex items-center mb-4">
+                    <div className=' flex items-center justify-between mt-4 mb-4'>
+                        <div class="flex items-center ">
                             <input checked id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 rounded " />
                             <label for="default-checkbox" class="ml-2 text-sm font-medium text-[#1f1f1f]">Student Info</label>
                         </div>
                         <div className='flex items-center gap-2'>
                             <span class=" text-sm font-medium text-[#1f1f1f]">Every Page</span>
                             <label class="relative inline-flex items-center cursor-pointer">
-
                                 <input type="checkbox" value="" class="sr-only peer" />
                                 <div class="w-10 h-[20px] bg-[#525252] peer-focus:outline-none  rounded-full peer  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[1.8px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all  peer-checked:bg-blue-600"></div>
-
                             </label>
                         </div>
                     </div>
 
 
-                    <div className=' mt-4'>
-                        <label className=' text-[#5F5F5F] ' htmlFor="date">IEP Date </label>
-                        <input name='date' id='date' type="date" placeholder='Select Date' className=' bg-[#F5F5F5] w-full p-3 mt-2 rounded-lg outline-none border border-[#BFBFBF]' />
+
+                    <div className=' flex items-center gap-4'>
+                        <input name='name' id='name' type="text" placeholder='Name' className=' bg-[#F5F5F5] w-full p-3 mt-2 rounded-lg outline-none ' />
+                        <FaTrash className=' text-2xl text-[#FF6161]' />
+                    </div>
+                    <div className=' flex items-center gap-4'>
+                        <input name='date' id='date' type="text" placeholder='date' className=' bg-[#F5F5F5] w-full p-3 mt-2 rounded-lg outline-none ' />
+                        <FaTrash className=' text-2xl text-[#FF6161]' />
                     </div>
 
-                    <div className=' mt-4'>
-                        <label className=' text-[#5F5F5F] ' htmlFor="target">Target ( From IEP Generator )</label>
-                        <input name='target' id='target' type="text" placeholder='Target one' className=' w-full p-3 mt-2 rounded-lg outline-none border border-[#BFBFBF]' />
+                    <button className=' py-3 w-full rounded-lg bg-[#DFFCFF] text-[#555555]  mt-8 font-medium'>Add New Field</button>
+
+                    <div className=' mt-4 flex items-center gap-5'>
+                        <div className=' w-full'>
+                            <label className=' text-[#5F5F5F] ' htmlFor="area">Font Type</label>
+                            <select id="area" name='area' class="bg-[#F5F5F5] border border-gray-300 text-gray-900 mt-2 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 py-2  ">
+                                <option selected value="CA">Select  area of need</option>
+                                <option value="FR">France</option>
+                                <option value="DE">Germany</option>
+                            </select>
+                        </div>
+                        <div className=' w-40'>
+                            <label className=' text-[#5F5F5F] ' htmlFor="area">Font Color</label>
+                            <input type="color" className=' w-full h-10' />
+                        </div>
                     </div>
 
-                    <div className=' mt-4'>
-                        <label className=' text-[#5F5F5F] ' htmlFor="info">Additional Information</label>
-                        <textarea placeholder='Enter Additional Information' name="info" id="info" cols="30" rows="10" className=' w-full p-3 mt-2 rounded-lg outline-none border border-[#BFBFBF]'></textarea>
+                    <div className=' mt-6 mb-16'>
+                        <label for="customRange1" className="flex items-center justify-between">
+                            <p>Font Size</p>
+                            <p>40</p>
+                        </label>
+                        <div>
+                            <input type="range" />
+                        </div>
                     </div>
 
 
+                    <button onClick={() => setNext(!next)} className=' py-3 w-full rounded-lg border border-[#A9F8FD] text-[#555555]  mt-8 font-medium flex items-center justify-center gap-2'><RiTodoLine />Add</button>
 
-                    <button onClick={() => setNext(!next)} className=' py-3 w-full rounded-lg bg-[#A9F8FD] text-[#555555]  mt-8 font-medium'>Create</button>
+
+
+                    <button onClick={() => setNext(!next)} className=' py-3 w-full rounded-lg bg-[#A9F8FD] text-[#555555]  mt-8 font-medium flex items-center justify-center gap-2'><BsPrinter />Make Printable</button>
                 </from> : <div className=' flex flex-col items-center'>
 
-
+                    <div className='h-[1px] w-full bg-[#C6C6C6] mt-8'></div>
                     <div>
-                        <h1 className=' text-[#616161] text-2xl text-center font-medium mt-10'>Accommodations</h1>
-                        <p className=' w-10/12 mx-auto text-center text-[#878787] text-lg'>1960s with the release of Letraset sheets containing Lorem Ipsum passages</p>
+                        <h1 className=' text-[#2B2B2B] text-2xl text-center font-medium mt-10'>Worksheet Title</h1>
                     </div>
 
+                    <div className=' flex flex-col items-start w-full text-xl'>
+                        <div className=' border-b border-b-gray-400'>
+                            <label htmlFor="name">Name :</label>
+                            <input type="text" />
+                        </div>
+                        <div className=' border-b border-b-gray-400 mt-3'>
+                            <label htmlFor="name">Date :</label>
+                            <input type="text" />
+                        </div>
+                    </div>
 
-                    <div className=' border border-[#EFEFEF] p-8  mt-10 rounded-lg mb-4 w-full'>
-                        <h1 className=' text-[#616161] text-[22px] font-medium '>The Learning Environment</h1>
-                        <p className=' text-[#878787] mt-2 mb-10 text-[18px]'>1960s with the release of Letraset sheets containing Lorem Ipsum passages</p>
-
-                        <h1 className=' text-[#616161] text-[22px] font-medium '>Teaching Methods</h1>
-                        <p className=' text-[#878787] mt-2 mb-28 text-[18px]'>1960s with the release of Letraset sheets containing Lorem Ipsum passages</p>
-                    </div>
-                    <div className=' w-full flex items-start'>
-                        <button className=' bg-[#EFEFEF] text-[#00000086] py-3 px-20 rounded-md border border-[#c8c8c8] mb-10 font-medium'>Edit</button>
-                    </div>
-                    <div className=' flex items-center w-full gap-10'>
-                        <button className=' w-1/2 py-3 border border-[#A9F8FD] rounded-lg text-[#555555] font-medium'>Copy</button>
-                        <button className=' w-1/2 bg-[#A9F8FD] rounded-lg py-3 text-[#555555] font-medium'>Save</button>
-                    </div>
                 </div>
             }
         </div>

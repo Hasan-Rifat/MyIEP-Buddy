@@ -13,14 +13,14 @@ const ActiveLink = ({ children, href }) => {
   };
 
   return (
-    <Link
+    <span
       href={href}
       onClick={handleClick}
       className={`mt-5 ${path === href && "text-[#202020]  bg-[#ffffffd4] rounded-[6.68571px]"
         }`}
     >
       {children}
-    </Link>
+    </span>
   );
 };
 

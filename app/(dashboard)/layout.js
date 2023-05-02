@@ -20,9 +20,8 @@ export default function Layout({ children }) {
         <DashboardNav close={close} setClose={setClose} />
       </div>
       <div
-        className={` transition-all duration-500 ease-in-out ${
-          close ? "ml-16" : "ml-80"
-        }`}
+        className={` transition-all duration-500 ease-in-out ${close ? "ml-16" : "xl:ml-80 ml-16"
+          }`}
       >
         <div>
           <DashboardTopNav />
