@@ -99,8 +99,8 @@ const DashboardNav = ({ close, setClose }) => {
               <div className=" overflow-hidden  ">
                 <span
                   className={`transition-all duration-300 ease-out  overflow-hidden  text-xl leading-6 text-[#212936] font-medium ${close
-                      ? " translate-x-[-28rem] -ml-32 "
-                      : " translate-x-0 duration-500 -ml-0"
+                    ? " translate-x-[-28rem] -ml-32 "
+                    : " translate-x-0 duration-500 -ml-0"
                     }`}
                 >
                   MyIEP <span>Buddy</span>
@@ -112,7 +112,7 @@ const DashboardNav = ({ close, setClose }) => {
           {/* Menu Items */}
 
           <div class="w-full px-2">
-            <div class="flex flex-col  w-full mt-3 border-t border-gray-300">
+            <div class="flex flex-col  w-full mt-3 ">
               {main_menu.map((menu, index) => (
                 <ActiveLink key={menu.id} href={menu.Path}>
                   <Link
@@ -137,8 +137,8 @@ const DashboardNav = ({ close, setClose }) => {
                       <div className=" overflow-hidden flex h-6  w-[100%]  ">
                         <span
                           className={`transition-all  w-[100%]  duration-500 ease-out overflow-hidden text-sm font-semibold ${close
-                              ? " translate-x-[-24rem] -ml-28  "
-                              : "duration-500 translate-x-0 pl-2"
+                            ? " translate-x-[-24rem] -ml-28  "
+                            : "duration-500 translate-x-0 pl-2"
                             }`}
                         >
                           {menu?.Route}

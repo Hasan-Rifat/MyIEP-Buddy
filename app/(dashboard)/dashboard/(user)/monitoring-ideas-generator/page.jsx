@@ -89,13 +89,36 @@ export default function page() {
                             <p>Font Size</p>
                             <p>40</p>
                         </label>
-                        <input
-                            id='customRange1'
-                            name='customRange1'
-                            className=' w-full border-none outline-none  accent-[#8FEEBE]  '
-                            type="range"
-                        />
+                        <div>
+                            <input type="range" />
+                        </div>
                     </div>
+
+
+
+                    <div className=' flex items-center justify-between mt-4'>
+                        <div class="flex items-center mb-4">
+                            <input checked id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 rounded " />
+                            <label for="default-checkbox" class="ml-2 text-sm font-medium text-[#1f1f1f]">Student Info</label>
+                        </div>
+                        <div className='flex items-center gap-2'>
+                            <span class=" text-sm font-medium text-[#1f1f1f]">Every Page</span>
+                            <label class="relative inline-flex items-center cursor-pointer">
+
+                                <input type="checkbox" value="" class="sr-only peer" />
+                                <div class="w-10 h-[20px] bg-[#525252] peer-focus:outline-none  rounded-full peer  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[1.8px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all  peer-checked:bg-blue-600"></div>
+
+                            </label>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
 
                     <div className=' mt-4'>
                         <label className=' text-[#5F5F5F] ' htmlFor="date">IEP Date </label>

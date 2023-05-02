@@ -16,9 +16,8 @@ const ActiveLink = ({ children, href }) => {
     <Link
       href={href}
       onClick={handleClick}
-      className={`${
-        path === href && "text-[#202020]  bg-[#ffffffd4] rounded-[6.68571px]"
-      }`}
+      className={`mt-5 ${path === href && "text-[#202020]  bg-[#ffffffd4] rounded-[6.68571px]"
+        }`}
     >
       {children}
     </Link>

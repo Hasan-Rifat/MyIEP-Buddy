@@ -16,3 +16,24 @@
   width: 100%;
   height: 100%;
 }
+
+input[type="range"] {
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 30px;
+  /* iOS */
+}
+
+::-webkit-slider-runnable-track {
+  background: #dddddd;
+}
+
+::-webkit-slider-thumb {
+  width: 20px;
+  height: 20px;
+  background: #d30d0d !important;
+  box-shadow: -900px 0 0 900px #8feebe;
+}
