@@ -1,6 +1,7 @@
-'use client'
+'use client';
 import Image from 'next/image';
 import { useState } from 'react';
+import React from 'react';
 
 // Image import
 import img from '../../../../../images/dashboard/user/monitor/monitor.svg'
@@ -111,13 +112,6 @@ export default function page() {
                             </label>
                         </div>
                     </div>
-
-
-
-
-
-
-
 
 
                     <div className=' mt-4'>

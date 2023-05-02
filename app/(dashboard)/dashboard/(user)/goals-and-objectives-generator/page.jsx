@@ -1,7 +1,7 @@
-'use client'
+'use client';
 import Image from 'next/image';
 import { useState } from 'react';
-
+import React from 'react';
 // Image import
 import img from '../../../../../images/dashboard/user/goalsAndObj/Sales-target.svg'
 import img2 from '../../../../../images/dashboard/user/goalsAndObj/goals2.svg'
