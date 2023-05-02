@@ -82,8 +82,8 @@ const Dashboard = () => {
             </p>
           </div>
         </div>
-        <div className=" px-5 py-[111px] grid grid-cols-3 gap-2">
-          <div></div>
+        <div className=" px-5 pt-[111px] grid grid-cols-1 md:grid-cols-3 gap-2 items-center ">
+          <div className="hidden md:block"></div>
           <div className="flex items-center gap-2 justify-center">
             <button className="bg-[#919EAB] opacity-50 rounded p-[10px] text-[#C4CDD5]">
               <HiOutlineChevronLeft className="" />
@@ -95,7 +95,7 @@ const Dashboard = () => {
               <HiOutlineChevronRight />
             </button>
           </div>
-          <div className="flex gap-5 w-full justify-end">
+          <div className="flex gap-5 w-full justify-center md:justify-end">
             <p className="text-[#111827] text-sm ">Rows per page:</p>
             <p className="text-[#111827] text-sm flex">
               03
@@ -104,6 +104,14 @@ const Dashboard = () => {
               </span>
             </p>
           </div>
+        </div>
+        <div className="flex gap-[10px] justify-end mt-[60px]">
+          <button className="border bg-white rounded-[10px] border-[#A9F8FD] px-[46px] py-[10px] text-sm text-[#555555]">
+            Copy
+          </button>
+          <button className="border bg-[#A9F8FD] rounded-[10px] border-[#A9F8FD] px-[46px] py-[10px] text-sm text-[#555555]">
+            Save
+          </button>
         </div>
       </div>
     </section>
