@@ -8,6 +8,7 @@ import img2 from '../../../../../images/dashboard/user/goalsAndObj/goals2.svg'
 
 
 const GoalsGenerator = () => {
+
   const [next, setNext] = useState(true)
 
   return <div className=" min-h-screen  bg-[#F2F2F2]  px-10 pt-5 flex items-center gap-10">
