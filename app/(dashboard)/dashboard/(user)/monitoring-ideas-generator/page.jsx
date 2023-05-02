@@ -11,7 +11,7 @@ import { FaTrash } from 'react-icons/fa';
 import { RiTodoLine } from 'react-icons/ri';
 import { BsPrinter } from 'react-icons/bs';
 
-export default function page() {
+export default function Page() {
     const [next, setNext] = useState(true)
 
     return <div className=" min-h-screen  bg-[#F2F2F2]  sm:px-10 px-2 pt-5 lg:flex items-center gap-10">
