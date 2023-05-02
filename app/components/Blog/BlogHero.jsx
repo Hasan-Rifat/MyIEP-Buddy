@@ -5,15 +5,15 @@ import blogHero from "../../../images/blogImg/bloghero.svg";
 
 export default function BlogHero() {
   return (
-    <div className=" flex items-center gap-20 py-14">
-      <div className="w-1/2">
+    <div className=" lg:flex items-center xl:gap-20 gap-10 py-14">
+      <div className="lg:w-1/2 mb-10 lg:mb-0">
         <Image
           src={blogHero}
           alt="Picture of the author"
           className=" rounded-lg w-full "
         />
       </div>
-      <div className=" w-1/2">
+      <div className=" lg:w-1/2">
         <h1 className=" text-4xl mb-5 text-[#4D4D4D] font-semibold">
           Lorem Ipsum Dolor Sit{" "}
         </h1>
