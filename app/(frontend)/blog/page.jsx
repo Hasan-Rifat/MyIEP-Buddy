@@ -4,7 +4,7 @@ import EducationBlog from "@/app/components/Home/EducationBlog";
 export default function page() {
   return (
     <div className=" bg-[#F7F9FA] py-20">
-      <div className=" container px-20 mx-auto">
+      <div className=" container xl:px-20 px-5 mx-auto">
         <h1 className=" text-4xl text-center font-semibold text-[#232933]">
           Latest <span className=" text-[#43A4F5]">Blog</span>
         </h1>
