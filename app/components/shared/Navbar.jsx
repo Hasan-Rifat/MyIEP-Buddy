@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 
 // Image Import
 import logo from "../../../images/logo/logo.png";
+import FrontendMenuActive from "./FrontendMenuActive";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -32,6 +33,64 @@ export default function Navbar() {
     return null;
   }
 
+  const main_menu = [
+    {
+      route: "Home",
+      path: "/",
+      id: 1,
+    },
+    {
+      route: "About",
+      path: "/about-us",
+      id: 2,
+    },
+    {
+      route: "Goals",
+      path: "/goals",
+      id: 3,
+    },
+    {
+      route: "Levels",
+      path: "/levels",
+      id: 4,
+    },
+    {
+      route: "Progress",
+      path: "/progress",
+      id: 5,
+    },
+    {
+      route: "Worksheet",
+      path: "/worksheet",
+      id: 6,
+    },
+    {
+      route: "Blog",
+      path: "/blog",
+      id: 7,
+    },
+    {
+      route: "FAQ",
+      path: "/faq",
+      id: 8,
+    },
+    {
+      route: "Pricing",
+      path: "/pricing",
+      id: 9,
+    },
+    {
+      route: "Contact",
+      path: "/contact",
+      id: 10,
+    },
+    {
+      route: "Affiliate",
+      path: "/affiliate-program",
+      id: 11,
+    },
+  ];
+
   return (
     <>
       <div className="z-[100000000] sticky top-0 bg-white ">
@@ -54,61 +113,15 @@ export default function Navbar() {
                 <div className=" flex w-full justify-between  items-center ">
                   <div className="h-full w-full flex items-center relative ">
                     <div className=" flex items-center ">
-                      <Link href={"/"}>
-                        <p className=" py-6   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
-                          Home
-                        </p>
-                      </Link>
-                      <Link href={"/about-us"}>
-                        <p className=" py-6   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
-                          About us
-                        </p>
-                      </Link>
-                      <Link href={"/terms-and-conditions"}>
-                        <p className=" py-6   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
-                          Goals
-                        </p>
-                      </Link>
-                      <Link href={"/levels"}>
-                        <p className=" py-6   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
-                          Levels
-                        </p>
-                      </Link>
-                      <Link href={"/progress"}>
-                        <p className=" py-6   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
-                          Progress
-                        </p>
-                      </Link>
-                      <Link href={"/worksheet"}>
-                        <p className=" py-6   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
-                          Worksheet
-                        </p>
-                      </Link>
-                      <Link href={"/blog"}>
-                        <p className=" py-6   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
-                          Blog
-                        </p>
-                      </Link>
-                      <Link href={"/faq"}>
-                        <p className=" py-6   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
-                          FAQ
-                        </p>
-                      </Link>
-                      <Link href={"/pricing"}>
-                        <p className=" py-6   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
-                          Pricing
-                        </p>
-                      </Link>
-                      <Link href={"/contact"}>
-                        <p className=" py-6   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
-                          Contact
-                        </p>
-                      </Link>
-                      <Link href={"/affiliate-program"}>
-                        <p className=" py-6   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
-                          Affiliate
-                        </p>
-                      </Link>
+                      {main_menu.map((item) => (
+                        <FrontendMenuActive key={item.id} href={item.path}>
+                          <Link href={item.path}>
+                            <p className=" py-6   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  ">
+                              {item.route}
+                            </p>
+                          </Link>
+                        </FrontendMenuActive>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -157,17 +170,15 @@ export default function Navbar() {
 
           {/* Mobile Menu */}
           <div
-            className={`w-full fixed xl:hidden transition-all duration-300 ease-in-out h-screen top-0 bottom-0 left-0 right-0 bg-black opacity-40  ${
-              isMenuOpen ? "block" : "hidden"
-            }`}
+            className={`w-full fixed xl:hidden transition-all duration-300 ease-in-out h-screen top-0 bottom-0 left-0 right-0 bg-black opacity-40  ${isMenuOpen ? "block" : "hidden"
+              }`}
           ></div>
           <div
             ref={ref}
-            className={`${
-              isMenuOpen
+            className={`${isMenuOpen
                 ? "left-0 bottom-0 top-0 z-20 "
                 : "-left-96 bottom-0 top-0"
-            } transition-all duration-300 ease-in-out fixed xl:hidden  flex flex-col w-full md:w-1/2  max-w-sm py-6 px-6 bg-white overflow-y-auto`}
+              } transition-all duration-300 ease-in-out fixed xl:hidden  flex flex-col w-full md:w-1/2  max-w-sm py-6 px-6 bg-white overflow-y-auto`}
           >
             <div className="h-full flex flex-col gap-3  items-start pl-1">
               <div className=" flex justify-end items-end w-full">
@@ -196,61 +207,15 @@ export default function Navbar() {
                 </Link>
               </div>
               <div className=" flex flex-col gap-2   text-left">
-                <Link href={"/"}>
-                  <p className=" py-2   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
-                    Home
-                  </p>
-                </Link>
-                <Link href={"/about-us"}>
-                  <p className=" py-2   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
-                    About us
-                  </p>
-                </Link>
-                <Link href={"/terms-and-conditions"}>
-                  <p className=" py-2   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
-                    Goals
-                  </p>
-                </Link>
-                <Link href={"/levels"}>
-                  <p className=" py-2   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
-                    Levels
-                  </p>
-                </Link>
-                <Link href={"/progress"}>
-                  <p className=" py-2   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
-                    Progress
-                  </p>
-                </Link>
-                <Link href={"/worksheet"}>
-                  <p className=" py-2   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
-                    Worksheet
-                  </p>
-                </Link>
-                <Link href={"/blog"}>
-                  <p className=" py-2   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
-                    Blog
-                  </p>
-                </Link>
-                <Link href={"/faq"}>
-                  <p className=" py-2   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
-                    FAQ
-                  </p>
-                </Link>
-                <Link href={"/pricing"}>
-                  <p className=" py-2 2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
-                    Pricing
-                  </p>
-                </Link>
-                <Link href={"/contact"}>
-                  <p className=" py-2   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
-                    Contact
-                  </p>
-                </Link>
-                <Link href={"/affiliate-program"}>
-                  <p className=" py-2   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
-                    Affiliate
-                  </p>
-                </Link>
+                {main_menu.map((item) => (
+                  <FrontendMenuActive key={item.id} href={item.path}>
+                    <Link href={item.path}>
+                      <p className=" py-2   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
+                        Home
+                      </p>
+                    </Link>
+                  </FrontendMenuActive>
+                ))}
               </div>
 
               {/* Button */}
