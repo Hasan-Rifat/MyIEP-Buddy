@@ -64,11 +64,7 @@ export default function Navbar() {
       path: "/progress",
       id: 5,
     },
-    {
-      route: "Worksheet",
-      path: "/worksheet",
-      id: 6,
-    },
+
     {
       route: "Blog",
       path: "/blog",

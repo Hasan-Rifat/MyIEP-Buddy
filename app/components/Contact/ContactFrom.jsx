@@ -29,7 +29,8 @@ const ContactFrom = () => {
           <div className=" container mx-auto xl:px-20 px-5 lg:flex gap-16  ">
             <div className=" lg:w-2/5 z-[100] mb-16 lg:mb-0">
               <div className=" px-7 contactBox py-8 rounded-3xl text-white h-full">
-                <h1 className="  text-2xl mb-7">Get in touch</h1>
+                <h1 className="  text-2xl mb-5">Get in touch</h1>
+                <p> support@myiepbuddy.com</p>
                 <div className="mt-20">
                   <h2 className=" text-xl mt-5 mb-2">Social Media</h2>
                   <div className="flex items-center gap-5 mt-7 sm:mt-0">
