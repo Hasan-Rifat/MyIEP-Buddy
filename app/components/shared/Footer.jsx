@@ -47,7 +47,7 @@ export default function Footer() {
               <h1 className=" text-[#4D4D4D] text-2xl font-semibold mb-3">
                 Contact us
               </h1>
-              <p className=" text-[#4D4D4D] text-lg ">08123123123</p>
+              <p className=" text-[#4D4D4D] text-lg ">support@myiepbuddy.com</p>
             </div>
             <div className=" mt-7">
               <h1 className=" text-[#4D4D4D] text-2xl font-semibold mb-3">
