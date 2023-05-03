@@ -30,34 +30,25 @@ const ContactFrom = () => {
             <div className=" lg:w-2/5 z-[100] mb-16 lg:mb-0">
               <div className=" px-7 contactBox py-8 rounded-3xl text-white h-full">
                 <h1 className="  text-2xl mb-7">Get in touch</h1>
-                <h2 className=" text-lg mb-4">Visit us</h2>
-                <p>
-                  Lorem Ipsum has been the industry&apos;s standard dummy text
-                  ever since the 1500s, when an unknown printer took
-                </p>
-                <h2 className=" text-xl mt-5 mb-2">Chat to us</h2>
-                <p>Our friendly team is here to help</p>
-                <p>help@myiep.com</p>
-                <h2 className=" text-xl mt-5 mb-2">Calls us</h2>
-                <p>Mon-fir from 8am to 5pm</p>
-                <p>08123123123</p>
-                <h2 className=" text-xl mt-5 mb-2">Social Media</h2>
-                <div className="flex items-center gap-5 mt-7 sm:mt-0">
-                  <Link href={"https://www.instagram.com/myiepbuddy"}>
-                    <div className=" w-[34px] h-[34px] rounded-full flex items-center justify-center text-xs border border-[#ffffff] ">
-                      <AiFillInstagram size={13} />
-                    </div>
-                  </Link>
-                  <Link href={"https://www.facebook.com/myiepbuddy"}>
-                    <div className=" w-[34px] h-[34px] rounded-full flex items-center justify-center text-xs  border border-[#ffffff]">
-                      <FaFacebookF size={13} />
-                    </div>
-                  </Link>
-                  <Link href={"https://twitter.com/myiepbuddy"}>
-                    <div className=" w-[34px] h-[34px] rounded-full flex items-center justify-center text-xs  border border-[#ffffff]">
-                      <BsTwitter size={13} />
-                    </div>
-                  </Link>
+                <div className="mt-20">
+                  <h2 className=" text-xl mt-5 mb-2">Social Media</h2>
+                  <div className="flex items-center gap-5 mt-7 sm:mt-0">
+                    <Link href={"https://www.instagram.com/myiepbuddy"}>
+                      <div className=" w-[34px] h-[34px] rounded-full flex items-center justify-center text-xs border border-[#ffffff] ">
+                        <AiFillInstagram size={13} />
+                      </div>
+                    </Link>
+                    <Link href={"https://www.facebook.com/myiepbuddy"}>
+                      <div className=" w-[34px] h-[34px] rounded-full flex items-center justify-center text-xs  border border-[#ffffff]">
+                        <FaFacebookF size={13} />
+                      </div>
+                    </Link>
+                    <Link href={"https://twitter.com/myiepbuddy"}>
+                      <div className=" w-[34px] h-[34px] rounded-full flex items-center justify-center text-xs  border border-[#ffffff]">
+                        <BsTwitter size={13} />
+                      </div>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
