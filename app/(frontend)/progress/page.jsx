@@ -15,7 +15,7 @@ const Progress = () => {
   const [next, setNext] = useState(true);
 
   return (
-    <section className="pt-10 bg-[#F2F2F2]">
+    <section className="py-10 bg-[#F2F2F2]">
       <div className=" min-h-screen    sm:px-10 px-2 pt-5 lg:flex items-center gap-10">
         {next && (
           <div className=" flex flex-col items-center  lg:w-2/6   mb-10 transition-all duration-200 ease-out">

@@ -10,7 +10,7 @@ const Goals = () => {
   const [next, setNext] = useState(true);
 
   return (
-    <section className="pt-10   bg-[#F2F2F2]  ">
+    <section className="py-10   bg-[#F2F2F2]  ">
       <div className="container mx-auto sm:px-10 px-2 pt-5 lg:flex items-center gap-10">
         <div className=" flex flex-col items-center justify-center lg:w-2/6 mb-10 lg:mb-0 transition-all duration-200 ease-out">
           <Image src={img} alt="Picture of the author" />

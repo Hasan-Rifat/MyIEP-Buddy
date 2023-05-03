@@ -10,7 +10,7 @@ const Accommodations = () => {
   const [next, setNext] = useState(true);
 
   return (
-    <section className=" bg-[#F2F2F2] pt-10">
+    <section className=" bg-[#F2F2F2] py-10">
       <div className=" min-h-screen  sm:px-10 px-2 pt-5 lg:flex items-center gap-10">
         <div className=" flex flex-col items-center  lg:w-2/6 mb-10 transition-all duration-200 ease-out">
           <Image src={img} alt="Picture of the author" />
