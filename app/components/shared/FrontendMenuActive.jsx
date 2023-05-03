@@ -10,7 +10,7 @@ const FrontendMenuActive = ({ children, href }) => {
     router.push(href);
   };
   return (
-    <span
+    <Link
       href={href}
       onClick={handleClick}
       className={`${
@@ -18,7 +18,7 @@ const FrontendMenuActive = ({ children, href }) => {
       }`}
     >
       {children}
-    </span>
+    </Link>
   );
 };
 
