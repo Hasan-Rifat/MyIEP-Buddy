@@ -119,8 +119,8 @@ export default function Navbar() {
                   <div className="h-full w-full flex items-center relative ">
                     <div className=" flex items-center ">
                       {main_menu.map((item) => (
-                        <FrontendMenuActive key={item.id} href={item.path}>
-                          <Link href={item.path}>
+                        <FrontendMenuActive key={item.id} href={item?.path}>
+                          <Link href={item?.path}>
                             <p className=" py-6   2xl:px-[7px] px-[5px] cursor-pointer rounded-md text-[15px] font-[550]  ">
                               {item.route}
                             </p>
@@ -215,8 +215,8 @@ export default function Navbar() {
               </div>
               <div className=" flex flex-col gap-2   text-left">
                 {main_menu.map((item) => (
-                  <FrontendMenuActive key={item.id} href={item.path}>
-                    <Link href={item.path}>
+                  <FrontendMenuActive key={item.id} href={item?.path}>
+                    <Link href={item?.path}>
                       <p className=" py-2   2xl:px-[14px] px-[10px] cursor-pointer rounded-md text-[15px] font-[550]  text-black hover:text-[#FFAAA9] ">
                         {item.route}
                       </p>

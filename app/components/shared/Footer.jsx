@@ -37,7 +37,9 @@ export default function Footer() {
               <Link href={"/terms-and-conditions"}>Privacy Policy</Link>{" "}
             </p>
             <p className=" text-[#4D4D4D] text-lg xl:w-1/2 ">
-              <Link>Affiliate Program ( Commission 5 % )</Link>
+              <Link href={"/affiliate-program"}>
+                Affiliate Program ( Commission 5 % )
+              </Link>
             </p>
           </div>
           <div className=" flex flex-col justify-between ">

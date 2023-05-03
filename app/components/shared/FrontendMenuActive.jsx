@@ -10,15 +10,19 @@ const FrontendMenuActive = ({ children, href }) => {
     router.push(href);
   };
   return (
-    <Link
-      href={href}
-      onClick={handleClick}
-      className={`${
-        path === href ? "text-[#FFAAA9]  " : "text-black hover:text-[#FFAAA9] "
-      }`}
-    >
-      {children}
-    </Link>
+    <span>
+      <Link
+        href={href}
+        onClick={handleClick}
+        className={`${
+          path === href
+            ? "text-[#FFAAA9]  "
+            : "text-black hover:text-[#FFAAA9] "
+        }`}
+      >
+        {children}
+      </Link>
+    </span>
   );
 };
 
