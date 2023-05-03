@@ -1,20 +1,21 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
+import React from "react";
 
 // Image import
-import img from "../../../images/dashboard/user/present/present.svg";
+import img from "../../../images/dashboard/user/accommodations/Layer.svg";
 
-const Levels = () => {
+const Accommodations = () => {
   const [next, setNext] = useState(true);
 
   return (
-    <section className="py-10  bg-[#F2F2F2] ">
+    <section className=" bg-[#F2F2F2] py-10">
       <div className=" min-h-screen  sm:px-10 px-2 pt-5 lg:flex items-center gap-10">
-        <div className=" flex flex-col items-center lg:w-2/6 mb-10 transition-all duration-200 ease-out">
+        <div className=" flex flex-col items-center  lg:w-2/6 mb-10 transition-all duration-200 ease-out">
           <Image src={img} alt="Picture of the author" />
           <h1 className=" text-[#616161] font-medium text-2xl mt-5 mb-3">
-            Present Levels Generator
+            IEP Accommodations Generator
           </h1>
           <p className=" text-[#878787] w-9/12 mx-auto">
             1960s with the release of Letraset sheets containing Lorem Ipsum
@@ -82,54 +83,27 @@ const Levels = () => {
 
               <div className=" mt-4">
                 <label className=" text-[#5F5F5F] " htmlFor="name">
-                  What is the student’s name{" "}
-                  <span className=" text-[#5f5f5fa6]">(First name only)</span>
+                  Student Name
                 </label>
                 <input
                   id="name"
                   name="name"
                   type="text"
-                  placeholder="Enter Age"
-                  className=" w-full p-3 mt-2 rounded-lg outline-none border border-[#BFBFBF]"
-                />
-              </div>
-
-              <div className=" mt-4">
-                <label className=" text-[#5F5F5F] " htmlFor="age">
-                  What is the student’s age
-                </label>
-                <input
-                  id="age"
-                  name="age"
-                  type="text"
-                  placeholder="Enter Grade Level"
+                  placeholder="Enter Student Name"
                   className=" w-full p-3 mt-2 rounded-lg outline-none border border-[#BFBFBF]"
                 />
               </div>
 
               <div className=" mt-4">
                 <label className=" text-[#5F5F5F] " htmlFor="level">
-                  What is the student’s grade
+                  Grade Level
                 </label>
                 <input
                   id="level"
                   name="level"
                   type="text"
-                  placeholder="Enter Grade"
+                  placeholder="Enter Grade Level"
                   className=" w-full p-3 mt-2 rounded-lg outline-none border border-[#BFBFBF]"
-                />
-              </div>
-
-              <div className=" mt-4">
-                <label className=" text-[#5F5F5F] " htmlFor="date">
-                  IEP Date{" "}
-                </label>
-                <input
-                  name="date"
-                  id="date"
-                  type="date"
-                  placeholder="Select Date"
-                  className=" bg-[#F5F5F5] w-full p-3 mt-2 rounded-lg outline-none border border-[#BFBFBF]"
                 />
               </div>
 
@@ -148,6 +122,32 @@ const Levels = () => {
                   <option value="FR">France</option>
                   <option value="DE">Germany</option>
                 </select>
+              </div>
+
+              <div className=" mt-4">
+                <label className=" text-[#5F5F5F] " htmlFor="date">
+                  IEP Date{" "}
+                </label>
+                <input
+                  name="date"
+                  id="date"
+                  type="date"
+                  placeholder="Select Date"
+                  className=" bg-[#F5F5F5] w-full p-3 mt-2 rounded-lg outline-none border border-[#BFBFBF]"
+                />
+              </div>
+
+              <div className=" mt-4">
+                <label className=" text-[#5F5F5F] " htmlFor="target">
+                  Target ( From IEP Generator )
+                </label>
+                <input
+                  name="target"
+                  id="target"
+                  type="text"
+                  placeholder="Target one"
+                  className=" w-full p-3 mt-2 rounded-lg outline-none border border-[#BFBFBF]"
+                />
               </div>
 
               <div className=" mt-4">
@@ -175,7 +175,7 @@ const Levels = () => {
             <div className=" flex flex-col items-center">
               <div>
                 <h1 className=" text-[#616161] text-2xl text-center font-medium mt-10">
-                  Present Levels
+                  Accommodations
                 </h1>
                 <p className=" w-10/12 mx-auto text-center text-[#878787] text-lg">
                   1960s with the release of Letraset sheets containing Lorem
@@ -185,7 +185,7 @@ const Levels = () => {
 
               <div className=" border border-[#EFEFEF] p-8  mt-10 rounded-lg mb-4 w-full">
                 <h1 className=" text-[#616161] text-[22px] font-medium ">
-                  Student’s Strengths
+                  The Learning Environment
                 </h1>
                 <p className=" text-[#878787] mt-2 mb-10 text-[18px]">
                   1960s with the release of Letraset sheets containing Lorem
@@ -193,15 +193,7 @@ const Levels = () => {
                 </p>
 
                 <h1 className=" text-[#616161] text-[22px] font-medium ">
-                  Student’s Weaknesses
-                </h1>
-                <p className=" text-[#878787] mt-2 mb-10 text-[18px]">
-                  1960s with the release of Letraset sheets containing Lorem
-                  Ipsum passages
-                </p>
-
-                <h1 className=" text-[#616161] text-[22px] font-medium ">
-                  Student’s Accommodations
+                  Teaching Methods
                 </h1>
                 <p className=" text-[#878787] mt-2 mb-28 text-[18px]">
                   1960s with the release of Letraset sheets containing Lorem
@@ -213,7 +205,6 @@ const Levels = () => {
                   Edit
                 </button>
               </div>
-
               <div className=" flex items-center w-full gap-10">
                 <button className=" w-1/2 py-3 border border-[#A9F8FD] rounded-lg text-[#555555] font-medium">
                   Copy
@@ -230,4 +221,4 @@ const Levels = () => {
   );
 };
 
-export default Levels;
+export default Accommodations;
