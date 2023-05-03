@@ -99,9 +99,9 @@ export default function TermsContainer() {
   };
 
   return (
-    <div className="bg-[#F7F9FA] py-20">
-      <div className=" container mx-auto xl:px-20  px-5 md:flex items-center gap-10 2xl:h-[50vh] md:h-[60vh] ">
-        <div className=" md:border-r border-r-[#C8C8C8] md:w-2/6 h-full md:flex md:flex-col grid sm:grid-cols-2 grid-cols-1 items-center md:items-start   gap-7 md:gap-0  justify-center mb-8 md:mb-0 ">
+    <div className="bg-[#F7F9FA]">
+      <div className=" container mx-auto xl:px-20  px-5 md:flex items-center gap-10 ">
+        <div className=" md:border-r border-r-[#C8C8C8] md:w-2/6  md:flex md:flex-col grid sm:grid-cols-2 grid-cols-1 items-center md:items-start   gap-7 md:gap-0  justify-center mb-8 md:mb-0 ">
           {testimonials.map((t) => (
             <div key={t.id} className=" mx-auto md:mx-0">
               <button
@@ -118,7 +118,7 @@ export default function TermsContainer() {
           ))}
         </div>
 
-        <div className="  md:w-4/6 h-full flex flex-col  justify-center">
+        <div className="  md:w-4/6  flex flex-col  justify-center py-20">
           {singleR.map((d) => (
             <div key={d.id}>
               <h1 className=" lg:text-3xl text-xl text-[#8A8A8A] font-medium mb-5">
