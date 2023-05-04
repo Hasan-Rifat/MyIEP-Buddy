@@ -28,9 +28,9 @@ const AboutHero = () => {
               <h1 class=" text-center text-3xl md:text-5xl text-white font-bold drop-shadow-lg mb-[24px]">
                 About MyIEP Buddy
               </h1>
-              <p class="mt-5 text-center text-2xl text-white opacity-100">
+              {/*  <p class="mt-5 text-center text-2xl text-white opacity-100">
                 Have questions? We&apos;re here to help!
-              </p>
+              </p> */}
             </div>
           </div>
         </div>
