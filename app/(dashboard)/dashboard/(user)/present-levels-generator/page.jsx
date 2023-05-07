@@ -8,6 +8,18 @@ import img from '../../../../../images/dashboard/user/present/present.svg'
 const PresentGenerator = () => {
   const [next, setNext] = useState(true)
 
+  const handelSubmit = (event) => {
+    event.preventDefault();
+    const goal = event.target.goal.value;
+    const name = event.target.name.value;
+    const age = event.target.age.value;
+    const level = event.target.level.value;
+    const date = event.target.date.value;
+    const area = event.target.area.value;
+    const info = event.target.info.value;
+    console.log(goal, name, age, level, area, date, info);
+  }
+
   return <div className=" min-h-screen  bg-[#F2F2F2]  sm:px-10 px-2 pt-5 lg:flex items-center gap-10">
 
     <div className=' flex flex-col items-center lg:w-2/6 mb-10 transition-all duration-200 ease-out'>
@@ -36,12 +48,10 @@ const PresentGenerator = () => {
       </ol>
 
       {
-        next ? <from>
-
-
+        next ? <form onSubmit={handelSubmit}>
           <div>
             <label className=' text-[#5F5F5F] ' htmlFor="goal">Select Goal</label>
-            <select id="goal" name='goal' class="bg-[#F5F5F5] border border-gray-300 text-gray-900 mt-2 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3  ">
+            <select required id="goal" name='goal' class="bg-[#F5F5F5] border border-gray-300 text-gray-900 mt-2 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3  ">
               <option selected value="CA">Select Goal</option>
               <option value="FR">France</option>
               <option value="DE">Germany</option>
@@ -83,8 +93,11 @@ const PresentGenerator = () => {
           </div>
 
 
-          <button onClick={() => setNext(!next)} className=' py-3 w-full rounded-lg bg-[#A9F8FD] text-[#555555]  mt-8 font-medium'>Create</button>
-        </from> : <div className=' flex flex-col items-center'>
+          <button
+            // onClick={() => setNext(!next)}
+            type='submit'
+            className=' py-3 w-full rounded-lg bg-[#A9F8FD] text-[#555555]  mt-8 font-medium'>Create</button>
+        </form> : <div className=' flex flex-col items-center'>
 
 
           <div>

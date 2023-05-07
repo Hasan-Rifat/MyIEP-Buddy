@@ -13,6 +13,17 @@ import { BsPrinter } from 'react-icons/bs';
 
 export default function Page() {
     const [next, setNext] = useState(true)
+    const handelSubmit = (event) => {
+        event.preventDefault();
+        const goal = event.target.goal.value;
+        const name = event.target.name.value;
+        const age = event.target.age.value;
+        const level = event.target.level.value;
+        const date = event.target.date.value;
+        const area = event.target.area.value;
+        const info = event.target.info.value;
+        console.log(goal, name, age, level, area, date, info);
+    }
 
     return <div className=" min-h-screen  bg-[#F2F2F2]  sm:px-10 px-2 pt-5 lg:flex items-center gap-10">
 
@@ -46,7 +57,7 @@ export default function Page() {
             </ol>
 
             {
-                next ? <from>
+                next ? <form onSubmit={handelSubmit}>
                     <div>
                         <label className=' text-[#5F5F5F] text-xl font-medium ' htmlFor="goal">Goal</label>
                         <select id="goal" name='goal' class="bg-[#F5F5F5] border border-gray-300 text-gray-900 mt-2 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3  ">
@@ -157,12 +168,14 @@ export default function Page() {
                     </div>
 
 
-                    <button onClick={() => setNext(!next)} className=' py-3 w-full rounded-lg border border-[#A9F8FD] text-[#555555]  mt-8 font-medium flex items-center justify-center gap-2'><RiTodoLine />Add</button>
+                    <button className=' py-3 w-full rounded-lg border border-[#A9F8FD] text-[#555555]  mt-8 font-medium flex items-center justify-center gap-2'><RiTodoLine />Add</button>
 
 
 
-                    <button onClick={() => setNext(!next)} className=' py-3 w-full rounded-lg bg-[#A9F8FD] text-[#555555]  mt-8 font-medium flex items-center justify-center gap-2'><BsPrinter />Make Printable</button>
-                </from> : <div className=' flex flex-col items-center'>
+                    <button type='submit'
+                        // onClick={() => setNext(!next)}
+                        className=' py-3 w-full rounded-lg bg-[#A9F8FD] text-[#555555]  mt-8 font-medium flex items-center justify-center gap-2'><BsPrinter />Make Printable</button>
+                </form> : <div className=' flex flex-col items-center'>
 
                     <div className='h-[1px] w-full bg-[#C6C6C6] mt-8'></div>
                     <div>
