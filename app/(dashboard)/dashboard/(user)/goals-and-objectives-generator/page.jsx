@@ -65,11 +65,13 @@ const GoalsGenerator = () => {
             <div className=' mt-4'>
               <label className=' text-[#5F5F5F] ' htmlFor="countries">Area of need <span className=' text-[#5f5f5fa6]'>(Ex. math calculation, reading comprehension, etc.)</span></label>
               <select required id="countries" name='countries' class="bg-[#F5F5F5] border border-gray-300 text-gray-900 mt-2 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3  ">
-                <option selected>Choose a country</option>
-                <option value="US">United States</option>
-                <option value="CA">Canada</option>
-                <option value="FR">France</option>
-                <option value="DE">Germany</option>
+                <option selected>Choose a area</option>
+                <option value="Math Calculation">Math Calculation</option>
+                <option value="Math Problem Solving">Math Problem Solving</option>
+                <option value="Reading Comprehension">Reading Comprehension</option>
+                <option value="Basic Reading">Basic Reading</option>
+                <option value="Written Expression">Written Expression</option>
+                <option value="Behavior">Behavior</option>
               </select>
             </div>
 
