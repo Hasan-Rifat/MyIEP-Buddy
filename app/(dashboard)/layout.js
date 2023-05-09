@@ -2,8 +2,9 @@
 import { useEffect, useState } from "react";
 import DashboardNav from "../components/shared/DashboardNav";
 import DashboardTopNav from "../components/shared/DashboardTopNav";
+import { withAuth } from "../components/shared/withAuth";
 
-export default function Layout({ children }) {
+function Layout({ children }) {
   // Side Navbar
   const [close, setClose] = useState(
     typeof window !== "undefined" && JSON.parse(localStorage.getItem("close"))
@@ -32,3 +33,4 @@ export default function Layout({ children }) {
     </section>
   );
 }
+export default withAuth(Layout)
