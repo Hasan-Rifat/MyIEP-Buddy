@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { BsCheckCircle } from "react-icons/bs";
 
@@ -63,9 +64,11 @@ export default function Pricing() {
               </p>
             </div>
 
-            <button className=" mt-5 py-2.5 w-full bg-[#A9F8FD] text-[#555555] font-semibold rounded-md">
-              Get Started
-            </button>
+            <Link href={"https://buy.stripe.com/test_bIYeWV5o09l9aRi3cc"}>
+              <button className=" mt-5 py-2.5 w-full bg-[#A9F8FD] text-[#555555] font-semibold rounded-md">
+                Get Started
+              </button>
+            </Link>
           </div>
         </div>
       </div>
