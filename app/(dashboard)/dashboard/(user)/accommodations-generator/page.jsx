@@ -8,6 +8,19 @@ import img from '../../../../../images/dashboard/user/accommodations/Layer.svg'
 
 const AccommodationsGenerator = () => {
   const [next, setNext] = useState(true)
+  const handelSubmit = (event) => {
+    event.preventDefault();
+    const goal = event.target.goal.value;
+    const name = event.target.name.value;
+    const level = event.target.level.value;
+    const area = event.target.area.value;
+    const date = event.target.date.value;
+    const target = event.target.target.value;
+    const info = event.target.info.value;
+    console.log(goal, name, level, area, date, target, info);
+  }
+
+
 
   return <div className=" min-h-screen  bg-[#F2F2F2]  sm:px-10 px-2 pt-5 lg:flex items-center gap-10">
 
@@ -37,12 +50,10 @@ const AccommodationsGenerator = () => {
       </ol>
 
       {
-        next ? <from>
-
-
+        next ? <form onSubmit={handelSubmit}>
           <div>
             <label className=' text-[#5F5F5F] ' htmlFor="goal">Select Goal</label>
-            <select id="goal" name='goal' class="bg-[#F5F5F5] border border-gray-300 text-gray-900 mt-2 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3  ">
+            <select required id="goal" name='goal' class="bg-[#F5F5F5] border border-gray-300 text-gray-900 mt-2 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3  ">
               <option selected value="CA">Select Goal</option>
               <option value="FR">France</option>
               <option value="DE">Germany</option>
@@ -51,18 +62,18 @@ const AccommodationsGenerator = () => {
 
           <div className=' mt-4'>
             <label className=' text-[#5F5F5F] ' htmlFor="name">Student Name</label>
-            <input id='name' name='name' type="text" placeholder='Enter Student Name' className=' w-full p-3 mt-2 rounded-lg outline-none border border-[#BFBFBF]' />
+            <input required id='name' name='name' type="text" placeholder='Enter Student Name' className=' w-full p-3 mt-2 rounded-lg outline-none border border-[#BFBFBF]' />
           </div>
 
           <div className=' mt-4'>
             <label className=' text-[#5F5F5F] ' htmlFor="level">Grade Level</label>
-            <input id='level' name='level' type="text" placeholder='Enter Grade Level' className=' w-full p-3 mt-2 rounded-lg outline-none border border-[#BFBFBF]' />
+            <input required id='level' name='level' type="text" placeholder='Enter Grade Level' className=' w-full p-3 mt-2 rounded-lg outline-none border border-[#BFBFBF]' />
           </div>
 
 
           <div className=' mt-4'>
             <label className=' text-[#5F5F5F] ' htmlFor="area">Area of need</label>
-            <select id="area" name='area' class="bg-[#F5F5F5] border border-gray-300 text-gray-900 mt-2 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3  ">
+            <select required id="area" name='area' class="bg-[#F5F5F5] border border-gray-300 text-gray-900 mt-2 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3  ">
               <option selected value="CA">Select  area of need</option>
               <option value="FR">France</option>
               <option value="DE">Germany</option>
@@ -72,23 +83,27 @@ const AccommodationsGenerator = () => {
 
           <div className=' mt-4'>
             <label className=' text-[#5F5F5F] ' htmlFor="date">IEP Date </label>
-            <input name='date' id='date' type="date" placeholder='Select Date' className=' bg-[#F5F5F5] w-full p-3 mt-2 rounded-lg outline-none border border-[#BFBFBF]' />
+            <input required name='date' id='date' type="date" placeholder='Select Date' className=' bg-[#F5F5F5] w-full p-3 mt-2 rounded-lg outline-none border border-[#BFBFBF]' />
           </div>
 
           <div className=' mt-4'>
             <label className=' text-[#5F5F5F] ' htmlFor="target">Target ( From IEP Generator )</label>
-            <input name='target' id='target' type="text" placeholder='Target one' className=' w-full p-3 mt-2 rounded-lg outline-none border border-[#BFBFBF]' />
+            <input required name='target' id='target' type="text" placeholder='Target one' className=' w-full p-3 mt-2 rounded-lg outline-none border border-[#BFBFBF]' />
           </div>
 
           <div className=' mt-4'>
             <label className=' text-[#5F5F5F] ' htmlFor="info">Additional Information</label>
-            <textarea placeholder='Enter Additional Information' name="info" id="info" cols="30" rows="10" className=' w-full p-3 mt-2 rounded-lg outline-none border border-[#BFBFBF]'></textarea>
+            <textarea required placeholder='Enter Additional Information' name="info" id="info" cols="30" rows="10" className=' w-full p-3 mt-2 rounded-lg outline-none border border-[#BFBFBF]'></textarea>
           </div>
 
 
 
-          <button onClick={() => setNext(!next)} className=' py-3 w-full rounded-lg bg-[#A9F8FD] text-[#555555]  mt-8 font-medium'>Create</button>
-        </from> : <div className=' flex flex-col items-center'>
+          <button
+            // onClick={() => setNext(!next)}
+            type='submit'
+
+            className=' py-3 w-full rounded-lg bg-[#A9F8FD] text-[#555555]  mt-8 font-medium'>Create</button>
+        </form> : <div className=' flex flex-col items-center'>
 
 
           <div>

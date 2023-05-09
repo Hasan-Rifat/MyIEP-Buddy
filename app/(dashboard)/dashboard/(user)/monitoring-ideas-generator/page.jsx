@@ -13,6 +13,53 @@ import { BsPrinter } from 'react-icons/bs';
 
 export default function Page() {
     const [next, setNext] = useState(true)
+    const [bold, setBold] = useState(false)
+    const [italic, setItalic] = useState(false)
+    const [underline, setUnderline] = useState(false)
+    const [worktitle, setWorktitle] = useState('');
+    const [fontsize, setFontsize] = useState(50)
+    const [fontsize2, setFontsize2] = useState(50)
+
+    // For input
+    const [inputs, setInputs] = useState(['', '']); // set initial state with two inputs
+
+    console.log(inputs[0]);
+    // for handel Input
+    const handleAddInput = () => {
+        setInputs([...inputs, '']); // add a new empty input to the array
+    }
+
+    //   handel input change
+    const handleInputChange = (event, index) => {
+        const newInputs = [...inputs];
+        newInputs[index] = event.target.value;
+        setInputs(newInputs); // update the input value at the specified index
+    }
+
+    // delete input
+    const handleDeleteInput = (index) => {
+        const newInputs = [...inputs];
+        newInputs.splice(index, 1);
+        setInputs(newInputs); // remove the input at the specified index
+    }
+
+    // form submit value
+    const handelSubmit = (event) => {
+        event.preventDefault();
+        const goal = event.target.goal.value;
+        const title = event.target.title.value;
+        const font = event.target.font.value;
+        const color = event.target.color.value;
+        const font2 = event.target.font2.value;
+        const color2 = event.target.color2.value;
+
+        // input value
+        const name = inputs[0]
+        const date = inputs[1]
+        const orthervalue = inputs.slice(2)
+
+        console.log(goal, title, font, color, fontsize, inputs, name, date, orthervalue, font2, color2);
+    }
 
     return <div className=" min-h-screen  bg-[#F2F2F2]  sm:px-10 px-2 pt-5 lg:flex items-center gap-10">
 
@@ -46,7 +93,7 @@ export default function Page() {
             </ol>
 
             {
-                next ? <from>
+                next ? <form onSubmit={handelSubmit}>
                     <div>
                         <label className=' text-[#5F5F5F] text-xl font-medium ' htmlFor="goal">Goal</label>
                         <select id="goal" name='goal' class="bg-[#F5F5F5] border border-gray-300 text-gray-900 mt-2 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3  ">
@@ -66,39 +113,37 @@ export default function Page() {
                         </div>
                         <div className=' bg-[#F5F5F5] rounded-lg'>
                             <div className=' flex items-center gap-7 text-lg px-8 border-b border-b-gray-200 pt-2 pb-1 font-medium'>
-                                <button className=' font-bold'>B</button>
-                                <button className=' italic'>i</button>
-                                <button className=' underline'>U</button>
+                                <button onClick={() => setBold(!bold)} className={`font-bold ${bold ? 'text-black' : ' text-gray-500'}`}>B</button>
+                                <button onClick={() => setItalic(!italic)} className={`italic ${italic ? 'text-black' : ' text-gray-500'}`}>i</button>
+                                <button onClick={() => setUnderline(!underline)} className={`underline ${underline ? 'text-black' : ' text-gray-500'}`}>U</button>
                             </div>
-                            <h1 className='px-8 py-4 font-medium'>Worksheet Title</h1>
+                            <input onChange={(e) => setWorktitle(e.target.value)} value={worktitle} type="text" name='title' id='title' placeholder='Worksheet Title' className={`${bold && 'font-bold'} ${italic && 'italic'} ${underline && 'underline'} px-8 py-4 bg-transparent w-full placeholder:text-black `} />
+
                         </div>
                     </div>
 
-
-
-
                     <div className=' mt-4 flex items-center gap-5'>
                         <div className=' w-full'>
-                            <label className=' text-[#5F5F5F] ' htmlFor="area">Font Type</label>
-                            <select id="area" name='area' class="bg-[#F5F5F5] border border-gray-300 text-gray-900 mt-2 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 py-2  ">
-                                <option selected value="CA">Select  area of need</option>
-                                <option value="FR">France</option>
-                                <option value="DE">Germany</option>
+                            <label className=' text-[#5F5F5F] ' htmlFor="font">Font Type</label>
+                            <select id="font" name='font' class="bg-[#F5F5F5] border border-gray-300 text-gray-900 mt-2 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 py-2  ">
+                                <option selected value="CA">Nonito</option>
+                                <option value="FR">Serif</option>
+                                <option value="DE">Mono</option>
                             </select>
                         </div>
                         <div className=' w-40'>
-                            <label className=' text-[#5F5F5F] ' htmlFor="area">Font Color</label>
-                            <input type="color" className=' w-full h-10' />
+                            <label htmlFor='color' className=' text-[#5F5F5F] '>Font Color</label>
+                            <input name='color' id='color' type="color" className=' w-full h-10' />
                         </div>
                     </div>
 
                     <div className=' mt-6 '>
                         <label for="customRange1" className="flex items-center justify-between">
                             <p>Font Size</p>
-                            <p>40</p>
+                            <p>100</p>
                         </label>
                         <div>
-                            <input type="range" />
+                            <input type="range" min="0" max="100" value={fontsize} onChange={(e) => setFontsize(e.target.value)} />
                         </div>
                     </div>
 
@@ -120,29 +165,69 @@ export default function Page() {
 
 
 
-                    <div className=' flex items-center gap-4'>
-                        <input name='name' id='name' type="text" placeholder='Name' className=' bg-[#F5F5F5] w-full p-3 mt-2 rounded-lg outline-none ' />
-                        <FaTrash className=' text-2xl text-[#FF6161]' />
-                    </div>
-                    <div className=' flex items-center gap-4'>
-                        <input name='date' id='date' type="text" placeholder='date' className=' bg-[#F5F5F5] w-full p-3 mt-2 rounded-lg outline-none ' />
-                        <FaTrash className=' text-2xl text-[#FF6161]' />
+                    <div>
+                        <div className="flex items-center gap-7">
+                            <input
+                                type="text"
+                                value={inputs[0]}
+                                onChange={(event) => handleInputChange(event, 0)}
+                                placeholder="Name"
+                                className="bg-[#F5F5F5] w-full p-3 mt-2 rounded-lg outline-none "
+                            />
+                            <button
+                                disabled
+                                className="text-2xl text-[#FF6161] cursor-not-allowed"
+                            >
+                                <FaTrash />
+                            </button>
+                        </div>
+                        <div className="flex items-center gap-7">
+                            <input
+                                type="text"
+                                value={inputs[1]}
+                                onChange={(event) => handleInputChange(event, 1)}
+                                placeholder="Date"
+                                className="bg-[#F5F5F5] w-full p-3 mt-2 rounded-lg outline-none "
+                            />
+                            <button
+                                disabled
+                                className="text-2xl text-[#FF6161] cursor-not-allowed"
+                            >
+                                <FaTrash />
+                            </button>
+                        </div>
+                        {inputs.slice(2).map((input, index) => (
+                            <div key={index + 2} className="flex items-center gap-7">
+                                <input
+                                    type="text"
+                                    value={input}
+                                    onChange={(event) => handleInputChange(event, index + 2)}
+                                    placeholder={`Input ${index + 3}`}
+                                    className="bg-[#F5F5F5] w-full p-3 mt-2 rounded-lg outline-none "
+                                />
+                                <button
+                                    onClick={() => handleDeleteInput(index + 2)}
+                                    className="text-2xl text-[#FF6161]"
+                                ><FaTrash />
+                                </button>
+                            </div>
+                        ))}
+                        <button onClick={handleAddInput} className=' py-3 w-full rounded-lg bg-[#DFFCFF] text-[#555555]  mt-8 font-medium'>Add New Field</button>
                     </div>
 
-                    <button className=' py-3 w-full rounded-lg bg-[#DFFCFF] text-[#555555]  mt-8 font-medium'>Add New Field</button>
 
                     <div className=' mt-4 flex items-center gap-5'>
                         <div className=' w-full'>
-                            <label className=' text-[#5F5F5F] ' htmlFor="area">Font Type</label>
-                            <select id="area" name='area' class="bg-[#F5F5F5] border border-gray-300 text-gray-900 mt-2 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 py-2  ">
+                            <label className=' text-[#5F5F5F] ' htmlFor="font2">Font Type</label>
+                            <select id="font2" name='font2' class="bg-[#F5F5F5] border border-gray-300 text-gray-900 mt-2 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 py-2  ">
                                 <option selected value="CA">Select  area of need</option>
                                 <option value="FR">France</option>
                                 <option value="DE">Germany</option>
                             </select>
                         </div>
                         <div className=' w-40'>
-                            <label className=' text-[#5F5F5F] ' htmlFor="area">Font Color</label>
-                            <input type="color" className=' w-full h-10' />
+                            <label className=' text-[#5F5F5F] ' htmlFor="color">Font Color</label>
+                            <input name='color2' id='color' type="color" className=' w-full h-10' />
                         </div>
                     </div>
 
@@ -152,17 +237,19 @@ export default function Page() {
                             <p>40</p>
                         </label>
                         <div>
-                            <input type="range" />
+                            <input type="range" min="0" max="100" value={fontsize2} onChange={(e) => setFontsize2(e.target.value)} />
                         </div>
                     </div>
 
 
-                    <button onClick={() => setNext(!next)} className=' py-3 w-full rounded-lg border border-[#A9F8FD] text-[#555555]  mt-8 font-medium flex items-center justify-center gap-2'><RiTodoLine />Add</button>
+                    <button className=' py-3 w-full rounded-lg border border-[#A9F8FD] text-[#555555]  mt-8 font-medium flex items-center justify-center gap-2'><RiTodoLine />Add</button>
 
 
 
-                    <button onClick={() => setNext(!next)} className=' py-3 w-full rounded-lg bg-[#A9F8FD] text-[#555555]  mt-8 font-medium flex items-center justify-center gap-2'><BsPrinter />Make Printable</button>
-                </from> : <div className=' flex flex-col items-center'>
+                    <button type='submit'
+                        // onClick={() => setNext(!next)}
+                        className=' py-3 w-full rounded-lg bg-[#A9F8FD] text-[#555555]  mt-8 font-medium flex items-center justify-center gap-2'><BsPrinter />Make Printable</button>
+                </form> : <div className=' flex flex-col items-center'>
 
                     <div className='h-[1px] w-full bg-[#C6C6C6] mt-8'></div>
                     <div>
