@@ -92,6 +92,8 @@ export default function Navbar() {
     },
   ];
 
+  const user = JSON.parse(localStorage.getItem("user"));
+
   return (
     <>
       <div className="z-[100000000] sticky top-0 bg-white ">
@@ -130,18 +132,40 @@ export default function Navbar() {
             </div>
             {/* Button */}
             <div className=" flex items-center gap-6  ">
-              <Link
-                href={"/sign-in"}
-                className=" py-[7px] font-medium 2xl:px-7 px-5 border border-[#43A4F5] hover:bg-[#43A4F5] hover:text-black cursor-pointer text-[#43A4F5] rounded-[10px]"
-              >
-                Sign in
-              </Link>
-              <Link
-                href={"/sign-up"}
-                className=" py-[7px] font-medium 2xl:px-7 cursor-pointer hover:bg-transparent hover:text-[#43A4F5]  border border-[#43A4F5] bg-[#43A4F5] text-black rounded-[10px] px-5 "
-              >
-                Sign up
-              </Link>
+              {user?.token ? (
+                <>
+                  <Link
+                    href={"/dashboard"}
+                    className=" py-[7px] font-medium 2xl:px-7 px-5 border border-[#43A4F5] hover:bg-[#43A4F5] hover:text-black cursor-pointer text-[#43A4F5] rounded-[10px]"
+                  >
+                    Dashboard
+                  </Link>
+                  <button
+                    onClick={() => {
+                      localStorage.removeItem("user");
+                      window.location.href = "/";
+                    }}
+                    className=" py-[7px] font-medium 2xl:px-7 px-5 border border-[#43A4F5] hover:bg-[#43A4F5] hover:text-black cursor-pointer text-[#43A4F5] rounded-[10px]"
+                  >
+                    Log out
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href={"/sign-in"}
+                    className=" py-[7px] font-medium 2xl:px-7 px-5 border border-[#43A4F5] hover:bg-[#43A4F5] hover:text-black cursor-pointer text-[#43A4F5] rounded-[10px]"
+                  >
+                    Sign in
+                  </Link>
+                  <Link
+                    href={"/sign-up"}
+                    className=" py-[7px] font-medium 2xl:px-7 cursor-pointer hover:bg-transparent hover:text-[#43A4F5]  border border-[#43A4F5] bg-[#43A4F5] text-black rounded-[10px] px-5 "
+                  >
+                    Sign up
+                  </Link>
+                </>
+              )}
             </div>
           </div>
 

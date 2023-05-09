@@ -13,6 +13,9 @@ import eyeShow from "../../../images/authImg/eyeshow.svg";
 import eyeHidden from "../../../images/authImg/eyehiddenEye.svg";
 
 import Image from "next/image";
+import { useUserRegisterMutation } from "@/redux/features/user/userApi";
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 const dmSans = DM_Sans({
   weight: ["400", "500", "700"],
   style: ["normal", "italic"],
@@ -21,6 +24,10 @@ const dmSans = DM_Sans({
 });
 
 const SignUpFrom = () => {
+  const router = useRouter();
+
+  const [userRegister, { error, data, isLoading, isError }] =
+    useUserRegisterMutation();
   const [passwordIcon, setPasswordIcon] = useState(false);
   const [confirmPasswordIcon, setConfirmPasswordIcon] = useState(false);
   const [password, setPassword] = useState("");
@@ -33,41 +40,46 @@ const SignUpFrom = () => {
     const email = e.target.email.value;
     const regex = /^.{1,6}$/;
     if (regex.test(password)) {
-      alert("Password must be more than 7 carecter.");
+      toast.error("Password must be more than 7 carecter.");
       console.log("Password must be more than 6 carecter.");
       return;
     } else if (password !== confirmPassword) {
-      alert("confirm Password dose not match");
-      console.log("confirm Password dose not match");
+      toast.error("confirm Password dose not match");
       return;
     } else if (fullName && email && password && confirmPassword) {
-      const response = await fetch(
-        "http://localhost:5000/api/v1/user/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ fullName, email, password }),
-        }
-      );
-
-      const data = await response.json();
-
-      if (response.ok) {
-        // Registration successful
-        console.log(data);
-
-        const token = localStorage.setItem("token", data.token);
-
-        // Redirect or show a success message
-      } else {
-        // Registration failed
-        console.log(data.error);
-        // Show an error message
-      }
+      userRegister({ fullName, email, password });
     }
   };
+
+  if (isLoading) {
+    toast.loading("Loading...", {
+      id: "loading",
+    });
+  }
+
+  if (isError) {
+    toast.remove("loading");
+    toast.error(error.data?.message);
+  }
+
+  if (data) {
+    toast.remove("loading");
+    toast.success("user register successfully");
+
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        token: data.token,
+        email: data.user.email,
+        name: data.user.fullName,
+        roll: data.user.roll,
+      })
+    );
+
+    router.back() || "/";
+  }
+
+  // "token", data.data.token
 
   return (
     <section className={` ${dmSans.className} relative`}>

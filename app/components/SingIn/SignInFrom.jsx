@@ -13,6 +13,14 @@ import eyeShow from "../../../images/authImg/eyeshow.svg";
 import eyeHidden from "../../../images/authImg/eyehiddenEye.svg";
 
 import Image from "next/image";
+import { useUserLoginMutation } from "@/redux/features/user/userApi";
+import { toast } from "react-hot-toast";
+import {
+  useParams,
+  usePathname,
+  useRouter,
+  useSearchParams,
+} from "next/navigation";
 const dmSans = DM_Sans({
   weight: ["400", "500", "700"],
   style: ["normal", "italic"],
@@ -21,7 +29,53 @@ const dmSans = DM_Sans({
 });
 
 const SignInFrom = () => {
+  const [userLogin, { error, data, isLoading, isError }] =
+    useUserLoginMutation();
+
+  const router = useRouter();
+
   const [password, setPassword] = useState(false);
+
+  if (isLoading) {
+    toast.loading("Loading...", {
+      id: "loading",
+    });
+  }
+
+  if (isError) {
+    toast.remove("loading");
+    toast.error(error.data?.message);
+  }
+
+  if (data) {
+    toast.remove("loading");
+    toast.success(data.message);
+
+    // console.log(data);
+
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        token: data.token,
+        email: data.user.email,
+        name: data.user.fullName,
+        roll: data.user.roll,
+      })
+    );
+
+    router.back() || "/";
+  }
+
+  const loginHandler = async (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    if (email && password) {
+      userLogin({ email, password });
+    }
+  };
+
   return (
     <section className={` ${dmSans.className} relative`}>
       <div>
@@ -43,7 +97,10 @@ const SignInFrom = () => {
             </p>
             <div className="w-full flex items-center lg:h-screen">
               <div className="mt-[35px] w-full">
-                <form className="px-5 xl:px-0 xl:max-w-[410px] xl:ml-[115px] xl:mr-[107px] rounded ">
+                <form
+                  onSubmit={loginHandler}
+                  className="px-5 xl:px-0 xl:max-w-[410px] xl:ml-[115px] xl:mr-[107px] rounded "
+                >
                   <p>Welcome to</p>
                   <h2 className="text-2xl lg:text-[40px] leading-[56px] text-black font-bold mb-10">
                     MyIEP Buddy
@@ -54,6 +111,7 @@ const SignInFrom = () => {
                       className="appearance-none border border-[#C4C4C4] rounded w-full p-[19px] text-[#5D7183] placeholder-[#5D7183] leading-tight focus:outline-none focus:shadow-outline"
                       id="email"
                       type="email"
+                      name="email"
                       placeholder="Email*"
                     />
                   </div>
@@ -63,6 +121,7 @@ const SignInFrom = () => {
                       id="paymentEmail"
                       type={password ? "text" : "password"}
                       placeholder="Password*"
+                      name="password"
                     />
                     <Image
                       onClick={() => setPassword(!password)}
@@ -92,7 +151,7 @@ const SignInFrom = () => {
                   <div className="mt-[48px]">
                     <button
                       className="bg-[#A9F8FD] w-full rounded-[6px] py-2 text-base font-bold text-[#555555] "
-                      type="button"
+                      type="submit"
                     >
                       Sign in
                     </button>
