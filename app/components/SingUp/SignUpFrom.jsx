@@ -21,8 +21,36 @@ const dmSans = DM_Sans({
 });
 
 const SignUpFrom = () => {
-  const [password, setPassword] = useState(false);
-  const [confirmPassword, setConfirmPassword] = useState(false);
+  const [passwordIcon, setPasswordIcon] = useState(false);
+  const [confirmPasswordIcon, setConfirmPasswordIcon] = useState(false);
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+
+
+  const handelSubmit = (e) => {
+    e.preventDefault()
+
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const regex = /^.{1,6}$/;
+    if (regex.test(password)) {
+      alert('Password must be more than 7 carecter.');
+      console.log('Password must be more than 6 carecter.');
+      return
+    } else if (password !== confirmPassword) {
+      alert('confirm Password dose not match');
+      console.log('confirm Password dose not match');
+      return
+    } else if (name && email && password && confirmPassword) {
+      alert('last');
+      console.log(name, email, password, confirmPassword);
+    }
+
+  }
+
+
+
+
   return (
     <section className={` ${dmSans.className} relative`}>
       <div>
@@ -43,7 +71,7 @@ const SignUpFrom = () => {
             </p>
             <div className="lg:h-screen  flex items-center w-full">
               <div className="mt-[35px] w-full">
-                <form className="px-5 xl:px-0 xl:max-w-[410px] xl:ml-[115px] xl:mr-[107px] rounded ">
+                <form onSubmit={handelSubmit} className="px-5 xl:px-0 xl:max-w-[410px] xl:ml-[115px] xl:mr-[107px] rounded ">
                   <p>Welcome to</p>
                   <h2 className="text-2xl lg:text-[40px] leading-[56px] text-black font-bold mb-10">
                     MyIEP Buddy
@@ -52,7 +80,9 @@ const SignUpFrom = () => {
                     <input
                       className="appearance-none border border-[#C4C4C4] rounded w-full p-[19px] text-[#5D7183] placeholder-[#5D7183] leading-tight focus:outline-none focus:shadow-outline"
                       id="name"
+                      name="name"
                       type="text"
+                      required
                       placeholder="Full Name*"
                     />
                   </div>
@@ -60,35 +90,49 @@ const SignUpFrom = () => {
                     <input
                       className="appearance-none border border-[#C4C4C4] rounded w-full p-[19px] text-[#5D7183] placeholder-[#5D7183] leading-tight focus:outline-none focus:shadow-outline"
                       id="email"
+                      name="email"
                       type="email"
+                      required
                       placeholder="Email*"
                     />
                   </div>
+
+
                   <div className="mb-6 relative">
                     <input
                       className="appearance-none border border-[#C4C4C4] rounded w-full p-[19px] text-[#5D7183] placeholder-[#5D7183] leading-tight focus:outline-none focus:shadow-outline"
-                      id="paymentEmail"
-                      type={password ? "text" : "password"}
+                      id="password"
+                      name="password"
+                      required
+                      onChange={(e) => setPassword(e.target.value)}
+                      type={passwordIcon ? "text" : "password"}
                       placeholder="Password*"
+                      value={password}
                     />
                     <Image
-                      onClick={() => setPassword(!password)}
+                      onClick={() => setPasswordIcon(!passwordIcon)}
                       className="absolute top-1/2 right-[0%] transform -translate-x-full -translate-y-1/2 cursor-pointer"
-                      src={password ? eyeHidden : eyeShow}
+                      src={passwordIcon ? eyeHidden : eyeShow}
                       alt="show icon"
                     />
                   </div>
+
+
                   <div className="mb-6 relative">
                     <input
-                      className="appearance-none border border-[#C4C4C4] rounded w-full p-[19px] text-[#5D7183] placeholder-[#5D7183] leading-tight focus:outline-none focus:shadow-outline"
-                      id="phoneNumber"
-                      type={password ? "text" : "password"}
+                      className={`${password === confirmPassword ? '' : ' border-red-500'} appearance-none border border-[#C4C4C4] rounded w-full p-[19px] text-[#5D7183] placeholder-[#5D7183] leading-tight focus:outline-none focus:shadow-outline`}
+                      id="confirmpassword"
+                      name="confirmpassword"
+                      required
+                      type={confirmPasswordIcon ? "text" : "password"}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
                       placeholder="Confirm Password*"
+                      value={confirmPassword}
                     />
                     <Image
-                      onClick={() => setConfirmPassword(!confirmPassword)}
+                      onClick={() => setConfirmPasswordIcon(!confirmPasswordIcon)}
                       className="absolute top-1/2 right-[0%] transform -translate-x-full -translate-y-1/2"
-                      src={confirmPassword ? eyeHidden : eyeShow}
+                      src={confirmPasswordIcon ? eyeHidden : eyeShow}
                       alt="show icon"
                     />
                   </div>
@@ -115,7 +159,7 @@ const SignUpFrom = () => {
                   <div className="mt-[48px]">
                     <button
                       className="bg-[#A9F8FD] w-full rounded-[6px] py-2 text-base font-bold text-[#555555] "
-                      type="button"
+                      type="submit"
                     >
                       Sign Up
                     </button>
