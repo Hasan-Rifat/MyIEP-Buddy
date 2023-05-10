@@ -1,17 +1,17 @@
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
-import { isAuthenticated } from './auth';
+import { useEffect } from "react";
+import { isAuthenticated } from "./auth";
+import { useRouter } from "next/navigation";
 
 export function withAuth(WrappedComponent) {
-    return function WithAuth(props) {
-        const router = useRouter();
+  return function WithAuth(props) {
+    const router = useRouter();
 
-        useEffect(() => {
-            if (!isAuthenticated()) {
-                router.push('/login');
-            }
-        }, []);
+    useEffect(() => {
+      if (!isAuthenticated()) {
+        router.push("/sign-in");
+      }
+    }, [router]);
 
-        return <WrappedComponent {...props} />;
-    };
+    return <WrappedComponent {...props} />;
+  };
 }

@@ -13,6 +13,9 @@ import eyeShow from "../../../images/authImg/eyeshow.svg";
 import eyeHidden from "../../../images/authImg/eyehiddenEye.svg";
 
 import Image from "next/image";
+import { useUserRegisterMutation } from "@/redux/features/user/userApi";
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 const dmSans = DM_Sans({
   weight: ["400", "500", "700"],
   style: ["normal", "italic"],
@@ -21,35 +24,62 @@ const dmSans = DM_Sans({
 });
 
 const SignUpFrom = () => {
+  const router = useRouter();
+
+  const [userRegister, { error, data, isLoading, isError }] =
+    useUserRegisterMutation();
   const [passwordIcon, setPasswordIcon] = useState(false);
   const [confirmPasswordIcon, setConfirmPasswordIcon] = useState(false);
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
+  const handelSubmit = async (e) => {
+    e.preventDefault();
 
-  const handelSubmit = (e) => {
-    e.preventDefault()
-
-    const name = e.target.name.value;
+    const fullName = e.target.name.value;
     const email = e.target.email.value;
     const regex = /^.{1,6}$/;
     if (regex.test(password)) {
-      alert('Password must be more than 7 carecter.');
-      console.log('Password must be more than 6 carecter.');
-      return
+      toast.error("Password must be more than 7 carecter.");
+      console.log("Password must be more than 6 carecter.");
+      return;
     } else if (password !== confirmPassword) {
-      alert('confirm Password dose not match');
-      console.log('confirm Password dose not match');
-      return
-    } else if (name && email && password && confirmPassword) {
-      alert('last');
-      console.log(name, email, password, confirmPassword);
+      toast.error("confirm Password dose not match");
+      return;
+    } else if (fullName && email && password && confirmPassword) {
+      userRegister({ fullName, email, password });
     }
+  };
 
+  if (isLoading) {
+    toast.loading("Loading...", {
+      id: "loading",
+    });
   }
 
+  if (isError) {
+    toast.remove("loading");
+    toast.error(error.data?.message);
+  }
 
+  if (data) {
+    toast.remove("loading");
+    toast.success("user register successfully");
 
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        token: data.token,
+        email: data.user.email,
+        name: data.user.fullName,
+        roll: data.user.roll,
+      })
+    );
+
+    router.back() || "/";
+  }
+
+  // "token", data.data.token
 
   return (
     <section className={` ${dmSans.className} relative`}>
@@ -71,7 +101,10 @@ const SignUpFrom = () => {
             </p>
             <div className="lg:h-screen  flex items-center w-full">
               <div className="mt-[35px] w-full">
-                <form onSubmit={handelSubmit} className="px-5 xl:px-0 xl:max-w-[410px] xl:ml-[115px] xl:mr-[107px] rounded ">
+                <form
+                  onSubmit={handelSubmit}
+                  className="px-5 xl:px-0 xl:max-w-[410px] xl:ml-[115px] xl:mr-[107px] rounded "
+                >
                   <p>Welcome to</p>
                   <h2 className="text-2xl lg:text-[40px] leading-[56px] text-black font-bold mb-10">
                     MyIEP Buddy
@@ -97,7 +130,6 @@ const SignUpFrom = () => {
                     />
                   </div>
 
-
                   <div className="mb-6 relative">
                     <input
                       className="appearance-none border border-[#C4C4C4] rounded w-full p-[19px] text-[#5D7183] placeholder-[#5D7183] leading-tight focus:outline-none focus:shadow-outline"
@@ -117,10 +149,11 @@ const SignUpFrom = () => {
                     />
                   </div>
 
-
                   <div className="mb-6 relative">
                     <input
-                      className={`${password === confirmPassword ? '' : ' border-red-500'} appearance-none border border-[#C4C4C4] rounded w-full p-[19px] text-[#5D7183] placeholder-[#5D7183] leading-tight focus:outline-none focus:shadow-outline`}
+                      className={`${
+                        password === confirmPassword ? "" : " border-red-500"
+                      } appearance-none border border-[#C4C4C4] rounded w-full p-[19px] text-[#5D7183] placeholder-[#5D7183] leading-tight focus:outline-none focus:shadow-outline`}
                       id="confirmpassword"
                       name="confirmpassword"
                       required
@@ -130,7 +163,9 @@ const SignUpFrom = () => {
                       value={confirmPassword}
                     />
                     <Image
-                      onClick={() => setConfirmPasswordIcon(!confirmPasswordIcon)}
+                      onClick={() =>
+                        setConfirmPasswordIcon(!confirmPasswordIcon)
+                      }
                       className="absolute top-1/2 right-[0%] transform -translate-x-full -translate-y-1/2"
                       src={confirmPasswordIcon ? eyeHidden : eyeShow}
                       alt="show icon"
