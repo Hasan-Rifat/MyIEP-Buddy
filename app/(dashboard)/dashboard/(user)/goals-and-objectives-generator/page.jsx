@@ -6,12 +6,15 @@ import React from "react";
 import img from "../../../../../images/dashboard/user/goalsAndObj/Sales-target.svg";
 import img2 from "../../../../../images/dashboard/user/goalsAndObj/goals2.svg";
 import { useAiMutation } from "@/redux/features/ai/aiApi";
+import { toast } from "react-hot-toast";
 
 const GoalsGenerator = () => {
-  const [ai, {}] = useAiMutation();
+  const email = JSON.parse(localStorage.getItem("user"))?.email;
+  const [ai, { isError, isLoading, data, error }] = useAiMutation();
   const [next, setNext] = useState(true);
+  const [resData, setResData] = useState(null);
 
-  const handelSubmit = (event) => {
+  const handelSubmit = async (event) => {
     event.preventDefault();
     const firstname = event.target.firstname.value;
     const grade = event.target.grade.value;
@@ -21,11 +24,31 @@ const GoalsGenerator = () => {
     const baseline = event.target.baseline.value;
     const interest = event.target.interest.value;
     const met = event.target.met.value;
-    console.log(firstname, grade, area, skills, date, baseline, interest, met);
 
-    const prompt = `${firstname}, and his is a ${grade} student,  want to generate a goal for ${area}, Skill to focus on ${skills} to achiebe
-by the ${date} and the main is to become ${baseline}, she is interest in ${interest} and her Criteria to be ${met}`;
+    const prompt1 = `${firstname}, and his is a ${grade} student,  want to generate a goal for ${area}, Skill to focus on ${skills} to achiebe by the ${date} and the main is to become ${baseline}, she is interest in ${interest} and her Criteria to be ${met} SMART Goals`;
+
+    const prompt2 = `${firstname}, and his is a ${grade} student,  want to generate a goal for ${area}, Skill to focus on ${skills} to achiebe by the ${date} and the main is to become ${baseline}, she is interest in ${interest} and her Criteria to be ${met} Short-term objective`;
+
+    try {
+      toast.loading("Loading...", {
+        id: "loading",
+      });
+
+      const response = await ai({ prompt1, prompt2, email, goal: true });
+
+      toast.remove("loading");
+      toast.success("Text generated successfully", {
+        id: "success",
+      });
+      setResData(response.data);
+      setNext(false);
+    } catch (error) {
+      toast.remove("loading");
+      toast.error(error.data?.message || error);
+    }
   };
+
+  // Rest of your code...
 
   return (
     <div className=" min-h-screen  bg-[#F2F2F2]  sm:px-10 px-2 pt-5 lg:flex items-center gap-10">
@@ -213,7 +236,6 @@ by the ${date} and the main is to become ${baseline}, she is interest in ${inter
             </div>
 
             <button
-              onClick={() => setNext(!next)}
               type="submit"
               className=" py-3 w-full rounded-lg bg-[#A9F8FD] text-[#555555]  mt-8 font-medium"
             >
@@ -229,16 +251,7 @@ by the ${date} and the main is to become ${baseline}, she is interest in ${inter
               </h1>
               <p className=" text-[#878787] mt-2 text-[18px]">
                 {" "}
-                By the end of the IEP period 4/17/24, Heaven will improve her
-                math calculation skills related to exponents with fractions,
-                moving from her current baseline of correctly solving 40% of
-                problems to accurately solving at least 80% of exponent problems
-                involving fractions, as measured by teacher-created assessments
-                and classroom performance. This goal will support Heaven&apos;s
-                transition goal of becoming a dancer by enhancing her
-                problem-solving abilities, which are essential for understanding
-                complex choreography, managing personal finances, and navigating
-                other aspects of a professional dance career.
+                {resData?.data?.prompt1}
               </p>
             </div>
             <div className=" bg-[#F7F7F7] p-8 mb-10 rounded-lg">
@@ -246,33 +259,7 @@ by the ${date} and the main is to become ${baseline}, she is interest in ${inter
                 Short-term objective
               </h1>
               <p className=" text-[#878787] mt-2 text-[18px]">
-                By 7/17/23, Heaven will correctly simplify expressions involving
-                fractional exponents using the rules of exponents, with at least
-                70% accuracy in 4 out of 5 consecutive trials, as demonstrated
-                in classwork and quizzes.
-              </p>
-              <p className=" text-[#878787] mt-2 text-[18px]">
-                By 10/17/23, Heaven will accurately solve word problems that
-                require the use of fractional exponents, achieving at least 75%
-                accuracy in 4 out of 5 consecutive trials, as assessed by
-                teacher-created problems and in-class assignments.
-              </p>
-              <p className=" text-[#878787] mt-2 text-[18px]">
-                By 1/17/24, Heaven will demonstrate the ability to apply the
-                properties of exponents product of powers, quotient of powers,
-                power of a power to expressions involving fractional exponents
-                with at least 80% accuracy in 4 out of 5 consecutive trials, as
-                evidenced by classwork, quizzes, and tests.
-              </p>
-              <p className=" text-[#878787] mt-2 text-[18px]">
-                By 4/17/24, Heaven will exhibit increased confidence and
-                persistence in solving complex math problems involving
-                fractional exponents, as observed by the teacher and documented
-                through self-reflection activities and progress monitoring.
-                Additionally, she will explore the practical applications of
-                math in dance, such as understanding rhythm patterns,
-                calculating measurements for costume design, and managing
-                personal finances as a professional dancer.
+                {resData?.data?.prompt2}
               </p>
             </div>
             <div className=" flex items-center w-full gap-10">
