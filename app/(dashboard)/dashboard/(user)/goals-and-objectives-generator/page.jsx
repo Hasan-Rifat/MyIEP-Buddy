@@ -5,8 +5,10 @@ import React from "react";
 // Image import
 import img from "../../../../../images/dashboard/user/goalsAndObj/Sales-target.svg";
 import img2 from "../../../../../images/dashboard/user/goalsAndObj/goals2.svg";
+import { useAiMutation } from "@/redux/features/ai/aiApi";
 
 const GoalsGenerator = () => {
+  const [ai, {}] = useAiMutation();
   const [next, setNext] = useState(true);
 
   const handelSubmit = (event) => {
