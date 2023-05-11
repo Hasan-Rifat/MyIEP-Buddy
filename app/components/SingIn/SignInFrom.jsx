@@ -49,7 +49,7 @@ const SignInFrom = () => {
 
   if (data) {
     toast.remove("loading");
-    toast.success(data.message);
+    toast.success("Login Successfully");
 
     // console.log(data);
 
