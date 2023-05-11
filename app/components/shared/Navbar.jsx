@@ -101,7 +101,7 @@ export default function Navbar() {
       localStorage.removeItem("user");
       router.push("/");
 
-      window.location.reload();
+      router.refresh();
     }
   };
   return (
