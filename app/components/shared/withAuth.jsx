@@ -6,6 +6,7 @@ export function withAuth(WrappedComponent) {
 
     const router = useRouter();
     console.log(token);
+
     /*   if (!token) {
       router.push("/sign-in");
     } */
