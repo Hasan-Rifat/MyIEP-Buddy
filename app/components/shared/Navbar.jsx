@@ -6,9 +6,11 @@ import { useEffect, useRef, useState } from "react";
 // Image Import
 import logo from "../../../images/logo/logo.png";
 import FrontendMenuActive from "./FrontendMenuActive";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
 
   // For Menu
   const ref = useRef();
@@ -94,6 +96,14 @@ export default function Navbar() {
 
   const user = JSON.parse(localStorage.getItem("user"));
 
+  const logout = () => {
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("user");
+      router.push("/");
+
+      window.location.reload();
+    }
+  };
   return (
     <>
       <div className="z-[100000000] sticky top-0 bg-white ">
@@ -141,12 +151,7 @@ export default function Navbar() {
                     Dashboard
                   </Link>
                   <button
-                    onClick={() => {
-                      if (typeof window !== "undefined") {
-                        localStorage.removeItem("user");
-                        window.location.href = "/";
-                      }
-                    }}
+                    onClick={logout}
                     className=" py-[7px] font-medium 2xl:px-7 px-5 border border-[#43A4F5] hover:bg-[#43A4F5] hover:text-black cursor-pointer text-[#43A4F5] rounded-[10px]"
                   >
                     Log out
