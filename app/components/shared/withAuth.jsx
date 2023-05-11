@@ -5,10 +5,10 @@ export function withAuth(WrappedComponent) {
     const token = JSON.parse(localStorage.getItem("user")).token;
 
     const router = useRouter();
-
-    if (!token) {
+    console.log(token);
+    /*   if (!token) {
       router.push("/sign-in");
-    }
+    } */
 
     return <WrappedComponent {...props} />;
   };
