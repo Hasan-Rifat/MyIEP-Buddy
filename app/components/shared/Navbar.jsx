@@ -99,10 +99,8 @@ export default function Navbar() {
   const logout = () => {
     if (typeof window !== "undefined") {
       localStorage.removeItem("user");
-      // router.push("/");
-
-      router.refresh();
     }
+    router.refresh();
   };
   return (
     <>
