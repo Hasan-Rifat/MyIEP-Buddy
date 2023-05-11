@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 
 export function withAuth(WrappedComponent) {
   return function WithAuth(props) {
-    const user = localStorage.getItem("user");
+    const user = typeof window !== "undefined" && localStorage.getItem("user");
     const token = user ? JSON.parse(user).token : null;
     const router = useRouter();
 

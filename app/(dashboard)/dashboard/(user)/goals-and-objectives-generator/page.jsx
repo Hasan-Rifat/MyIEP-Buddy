@@ -9,7 +9,9 @@ import { useAiMutation } from "@/redux/features/ai/aiApi";
 import { toast } from "react-hot-toast";
 
 const GoalsGenerator = () => {
-  const email = JSON.parse(localStorage.getItem("user"))?.email;
+  const email = JSON.parse(
+    typeof window !== "undefined" && localStorage.getItem("user")
+  )?.email;
   const [ai, { isError, isLoading, data, error }] = useAiMutation();
   const [next, setNext] = useState(true);
   const [resData, setResData] = useState(null);

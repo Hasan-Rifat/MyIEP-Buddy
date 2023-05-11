@@ -53,15 +53,16 @@ const SignInFrom = () => {
 
     // console.log(data);
 
-    localStorage.setItem(
-      "user",
-      JSON.stringify({
-        token: data.token,
-        email: data.user.email,
-        name: data.user.fullName,
-        roll: data.user.roll,
-      })
-    );
+    typeof window !== "undefined" &&
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          token: data.token,
+          email: data.user.email,
+          name: data.user.fullName,
+          roll: data.user.roll,
+        })
+      );
 
     router.back() || "/";
   }

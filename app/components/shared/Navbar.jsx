@@ -142,8 +142,10 @@ export default function Navbar() {
                   </Link>
                   <button
                     onClick={() => {
-                      localStorage.removeItem("user");
-                      window.location.href = "/";
+                      if (typeof window !== "undefined") {
+                        localStorage.removeItem("user");
+                        window.location.href = "/";
+                      }
                     }}
                     className=" py-[7px] font-medium 2xl:px-7 px-5 border border-[#43A4F5] hover:bg-[#43A4F5] hover:text-black cursor-pointer text-[#43A4F5] rounded-[10px]"
                   >
