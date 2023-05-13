@@ -1,6 +1,8 @@
-import { useRouter } from 'next/router';
+
 import { useEffect } from 'react';
 import { isAuthenticated } from './auth';
+import { useRouter } from 'next/navigation';
+
 
 export function withAuth(WrappedComponent) {
     return function WithAuth(props) {

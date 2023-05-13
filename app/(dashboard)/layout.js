@@ -33,4 +33,4 @@ function Layout({ children }) {
     </section>
   );
 }
-export default withAuth(Layout)
+export default Layout

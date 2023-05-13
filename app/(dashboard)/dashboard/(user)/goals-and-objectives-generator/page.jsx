@@ -15,13 +15,17 @@ const GoalsGenerator = () => {
     event.preventDefault();
     const firstname = event.target.firstname.value;
     const grade = event.target.grade.value;
-    const countries = event.target.countries.value;
+    const area = event.target.area.value;
     const skills = event.target.skills.value;
     const date = event.target.date.value;
     const baseline = event.target.baseline.value;
     const interest = event.target.interest.value;
     const met = event.target.met.value;
-    console.log(firstname, grade, countries, skills, date, baseline, interest, met);
+
+    const prompt = `${firstname}, and his is a ${grade} student,  want to generate a goal for ${area}, Skill to focus on ${skills} to achiebe
+by the ${date} and the main is to become ${baseline}, she is interest in ${interest} and her Criteria to be ${met}`
+
+
   }
 
   return <div className=" min-h-screen  bg-[#F2F2F2]  sm:px-10 px-2 pt-5 lg:flex items-center gap-10">
@@ -63,8 +67,8 @@ const GoalsGenerator = () => {
               <input required name='grade' id='grade' type="text" placeholder='Student Grade' className=' w-full p-3 mt-2 rounded-lg outline-none border border-[#BFBFBF]' />
             </div>
             <div className=' mt-4'>
-              <label className=' text-[#5F5F5F] ' htmlFor="countries">Area of need <span className=' text-[#5f5f5fa6]'>(Ex. math calculation, reading comprehension, etc.)</span></label>
-              <select required id="countries" name='countries' class="bg-[#F5F5F5] border border-gray-300 text-gray-900 mt-2 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3  ">
+              <label className=' text-[#5F5F5F] ' htmlFor="area">Area of need <span className=' text-[#5f5f5fa6]'>(Ex. math calculation, reading comprehension, etc.)</span></label>
+              <select required id="area" name='area' class="bg-[#F5F5F5] border border-gray-300 text-gray-900 mt-2 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3  ">
                 <option selected>Choose a area</option>
                 <option value="Math Calculation">Math Calculation</option>
                 <option value="Math Problem Solving">Math Problem Solving</option>
