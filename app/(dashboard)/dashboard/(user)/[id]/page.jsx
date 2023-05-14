@@ -1,15 +1,26 @@
+"use client";
+
 import Image from "next/image";
 import arrow from "../../../../../images/dashboard/admin/rightArrow.svg";
 
 import { DM_Sans } from "next/font/google";
+import { useRouter } from "next/navigation";
+import { useGetGoalByIdQuery } from "@/redux/features/ai/aiApi";
+import { useSelector } from "react-redux";
 const dmSans = DM_Sans({
   weight: ["400", "500", "700"],
   style: ["normal", "italic"],
   subsets: ["latin"],
   display: "swap",
 });
-const SummeryEveryGeneratorSResults = () => {
-  const data = [
+const SummeryEveryGeneratorSResults = ({ params }) => {
+  const user = useSelector((state) => state?.userInfo?.person?.user);
+  const { data, isLoading, error } = useGetGoalByIdQuery({
+    id: params.id,
+    email: user?.email,
+  });
+
+  /* const data = [
     {
       id: 1,
       title: "goals results",
@@ -54,14 +65,16 @@ const SummeryEveryGeneratorSResults = () => {
         "By 1/17/24, Heaven will demonstrate the ability to apply the properties of exponents (product of powers, quotient of powers, power of a power) to expressions involving fractional exponents with at least 80% accuracy in 4 out of 5 consecutive trials, as evidenced by classwork, quizzes, and tests.",
       ],
     },
-  ];
+  ]; */
+
+  console.log(data?.data[0].name);
 
   return (
     <section className={`bg-[#F2F2F2] ${dmSans.className}`}>
       <div className="container mx-auto xl:px-20 px-5 pt-10 pb-[126px]">
         <div className="">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-[76px]">
-            {data.map((item) => (
+            {/*  {data?.data?.map((item) => (
               <div key={item.id}>
                 <h3 className="text-xl text-[#4D4D4D] text-center mb-[10px]">
                   {item.title}
@@ -84,7 +97,79 @@ const SummeryEveryGeneratorSResults = () => {
                   </div>
                 </div>
               </div>
-            ))}
+            ))} */}
+            {/* goal */}
+            <div>
+              <h3 className="text-xl text-[#4D4D4D] text-center mb-[10px] uppercase font-bold">
+                goals results
+              </h3>
+              <div className="bg-[#A9F8FD]  p-5 rounded-[5px] shadow-[0px_5px_15px_rgba(0,0,0,0.05)] h-full">
+                <div className="flex gap-2 justify-between mt-[7px]">
+                  <div className="bg-[#fff] pl-[20px] pr-[86px] py-[8px] rounded-[3px]">
+                    <h4 className="text-lg text-[#4D4D4D] font-medium">
+                      {data?.data[0].name}
+                    </h4>
+                  </div>
+                  <Image src={arrow} alt="arrow" className="inline-block" />
+                </div>
+                <div className="py-[23px] px-5 bg-white rounded-[3px] mt-[7px] min-h-[337px]">
+                  <p className="text-[#878787] mb-5">
+                    {data?.data[0].goal.prompt1}
+                  </p>
+                  <p className="text-[#878787] mb-5">
+                    {data?.data[0].goal.prompt2}
+                  </p>
+                </div>
+              </div>
+            </div>
+            {/* accommodations */}
+            <div>
+              <h3 className="text-xl text-[#4D4D4D] text-center mb-[10px] uppercase font-bold">
+                accommodations results
+              </h3>
+              <div className="bg-[#A9F8FD]  p-5 rounded-[5px] shadow-[0px_5px_15px_rgba(0,0,0,0.05)] h-full">
+                <div className="flex gap-2 justify-between mt-[7px]">
+                  <div className="bg-[#fff] pl-[20px] pr-[86px] py-[8px] rounded-[3px]">
+                    <h4 className="text-lg text-[#4D4D4D] font-medium">
+                      {data?.data[0].name}
+                    </h4>
+                  </div>
+                  <Image src={arrow} alt="arrow" className="inline-block" />
+                </div>
+                <div className="py-[23px] px-5 bg-white rounded-[3px] mt-[7px] min-h-[337px]">
+                  <p className="text-[#878787] mb-5">
+                    {data?.data[0].accommodations.prompt1}
+                  </p>
+                  <p className="text-[#878787] mb-5">
+                    {data?.data[0].accommodations.prompt2}
+                  </p>
+                </div>
+              </div>
+            </div>
+            {/* present */}
+            <div>
+              <h3 className="text-xl text-[#4D4D4D] text-center mb-[10px] uppercase font-bold">
+                present results
+              </h3>
+              <div className="bg-[#A9F8FD]  p-5 rounded-[5px] shadow-[0px_5px_15px_rgba(0,0,0,0.05)] h-full">
+                <div className="flex gap-2 justify-between mt-[7px]">
+                  <div className="bg-[#fff] pl-[20px] pr-[86px] py-[8px] rounded-[3px]">
+                    <h4 className="text-lg text-[#4D4D4D] font-medium">
+                      {data?.data[0].name}
+                    </h4>
+                  </div>
+                  <Image src={arrow} alt="arrow" className="inline-block" />
+                </div>
+                <div className="py-[23px] px-5 bg-white rounded-[3px] mt-[7px] min-h-[337px]">
+                  <p className="text-[#878787] mb-5">
+                    {data?.data[0].present.prompt1}
+                  </p>
+                  <p className="text-[#878787] mb-5">
+                    {data?.data[0].present.prompt2}
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

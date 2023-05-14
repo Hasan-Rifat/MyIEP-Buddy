@@ -5,16 +5,26 @@ import React from "react";
 // Image import
 import img from "../../../../../images/dashboard/user/goalsAndObj/Sales-target.svg";
 import img2 from "../../../../../images/dashboard/user/goalsAndObj/goals2.svg";
-import { useAiMutation } from "@/redux/features/ai/aiApi";
+import {
+  useCreateGoalMutation,
+  useCreateUserDataMutation,
+  useGenerateGoalTextMutation,
+} from "@/redux/features/ai/aiApi";
 import { toast } from "react-hot-toast";
+import { fromJSON } from "postcss";
+import { useSelector } from "react-redux";
 
 const GoalsGenerator = () => {
-  const email = JSON.parse(
-    typeof window !== "undefined" && localStorage.getItem("user")
-  )?.email;
-  const [ai, { isError, isLoading, data, error }] = useAiMutation();
+  const user = useSelector((state) => state?.userInfo?.person?.user);
+  const [createUserData] = useCreateUserDataMutation();
+  const [generateGoalText] = useGenerateGoalTextMutation();
+  const [createGoal] = useCreateGoalMutation();
+
   const [next, setNext] = useState(true);
   const [resData, setResData] = useState(null);
+  const [interest, setInterest] = useState("");
+
+  // from data
 
   const handelSubmit = async (event) => {
     event.preventDefault();
@@ -27,26 +37,49 @@ const GoalsGenerator = () => {
     const interest = event.target.interest.value;
     const met = event.target.met.value;
 
-    const prompt1 = `${firstname}, and his is a ${grade} student,  want to generate a goal for ${area}, Skill to focus on ${skills} to achiebe by the ${date} and the main is to become ${baseline}, she is interest in ${interest} and her Criteria to be ${met} SMART Goals`;
+    const prompt1 = `SMART Goals: ${firstname}, and he is a ${grade} student, want to generate a goal for ${area}, Skill to focus on ${skills} to achieve by the ${date}, and the main objective is to become ${baseline}. He is interested in ${interest}, and the criteria to be considered ${met} `;
 
-    const prompt2 = `${firstname}, and his is a ${grade} student,  want to generate a goal for ${area}, Skill to focus on ${skills} to achiebe by the ${date} and the main is to become ${baseline}, she is interest in ${interest} and her Criteria to be ${met} Short-term objective`;
+    const prompt2 = `Short-term objective: ${firstname}, and he is a ${grade} student, want to generate a goal for ${area}, Skill to focus on ${skills} to achieve by the ${date}, and the main objective is to become ${baseline}. He is interested in ${interest}, and the criteria to be considered ${met} `;
 
     try {
-      toast.loading("Loading...", {
-        id: "loading",
+      // generate text
+      const response = await generateGoalText({
+        prompt1,
+        prompt2,
       });
 
-      const response = await ai({ prompt1, prompt2, email, goal: true });
-
-      toast.remove("loading");
-      toast.success("Text generated successfully", {
-        id: "success",
-      });
       setResData(response.data);
       setNext(false);
+
+      return handelSave;
     } catch (error) {
-      toast.remove("loading");
-      toast.error(error.data?.message || error);
+      toast.error(error);
+    }
+  };
+
+  const handelSave = async () => {
+    try {
+      toast.success("Goal created successfully");
+      // goal name create
+      const data = await createUserData({
+        user: user?.email,
+        name: interest,
+      });
+
+      // goal create
+      const goalData = await createGoal({
+        email: user?.email,
+        goal: true,
+        prompt1: resData?.data?.prompt1,
+        prompt2: resData?.data?.prompt2,
+        goalName: data.data.userData.name,
+        goalId: data.data.userData._id,
+      });
+      console.log(goalData);
+
+      toast.success("Goal save successfully");
+    } catch (error) {
+      toast.error(error);
     }
   };
 
@@ -215,6 +248,7 @@ const GoalsGenerator = () => {
                 name="interest"
                 id="interest"
                 type="text"
+                onClick={(e) => setInterest(e.target.value)}
                 placeholder="Enter Student Interest"
                 className=" w-full p-3 mt-2 rounded-lg outline-none border border-[#BFBFBF]"
               />
@@ -268,7 +302,11 @@ const GoalsGenerator = () => {
               <button className=" w-1/2 py-3 border border-[#A9F8FD] rounded-lg text-[#555555] font-medium">
                 Copy
               </button>
-              <button className=" w-1/2 bg-[#A9F8FD] rounded-lg py-3 text-[#555555] font-medium">
+              <button
+                type="button"
+                onClick={handelSave}
+                className=" w-1/2 bg-[#A9F8FD] rounded-lg py-3 text-[#555555] font-medium"
+              >
                 Save
               </button>
             </div>

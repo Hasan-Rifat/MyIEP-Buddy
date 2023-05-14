@@ -15,12 +15,9 @@ import eyeHidden from "../../../images/authImg/eyehiddenEye.svg";
 import Image from "next/image";
 import { useUserLoginMutation } from "@/redux/features/user/userApi";
 import { toast } from "react-hot-toast";
-import {
-  useParams,
-  usePathname,
-  useRouter,
-  useSearchParams,
-} from "next/navigation";
+import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { setUserInfo } from "@/redux/features/user/userSlice";
 const dmSans = DM_Sans({
   weight: ["400", "500", "700"],
   style: ["normal", "italic"],
@@ -29,6 +26,7 @@ const dmSans = DM_Sans({
 });
 
 const SignInFrom = () => {
+  const dispatch = useDispatch();
   const [userLogin, { error, data, isLoading, isError }] =
     useUserLoginMutation();
 
@@ -50,19 +48,10 @@ const SignInFrom = () => {
   if (data) {
     toast.remove("loading");
     toast.success("Login Successfully");
-
-    // console.log(data);
+    dispatch(setUserInfo(data));
 
     typeof window !== "undefined" &&
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          token: data.token,
-          email: data.user.email,
-          name: data.user.fullName,
-          roll: data.user.roll,
-        })
-      );
+      localStorage.setItem("user", JSON.stringify(data));
 
     router.back() || "/";
   }

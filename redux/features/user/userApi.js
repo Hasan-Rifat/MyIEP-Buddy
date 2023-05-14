@@ -1,4 +1,5 @@
 import { apiSlice } from "../api/apiSlice";
+import { setUserInfo } from "./userSlice";
 
 export const userApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

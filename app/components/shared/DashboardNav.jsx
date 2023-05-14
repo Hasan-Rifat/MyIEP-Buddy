@@ -59,8 +59,9 @@ const DashboardNav = ({ close, setClose }) => {
     <div className=" h-full ">
       {/* <!-- Component Start --> */}
       <div
-        class={`flex flex-col  items-center justify-between h-full overflow-x-hidden scrollbar overflow-y-auto transition-all duration-300  ease-in-out bg-[#a9f8fd] text-[#405859b3] shadow-[0_0_15px_0_rgba(0,0,0,0.11)]  ${close ? "w-16 duration-500" : "w-80 "
-          }`}
+        class={`flex flex-col  items-center justify-between h-full overflow-x-hidden scrollbar overflow-y-auto transition-all duration-300  ease-in-out bg-[#a9f8fd] text-[#405859b3] shadow-[0_0_15px_0_rgba(0,0,0,0.11)]  ${
+          close ? "w-16 duration-500" : "w-80 "
+        }`}
       >
         <div className=" w-full flex flex-col justify-between ">
           {/* Bar icons */}
@@ -74,12 +75,14 @@ const DashboardNav = ({ close, setClose }) => {
             >
               <div className={`h-[2px] w-[21px] bg-black mb-1 `}></div>
               <div
-                className={`h-[2px]  bg-black mb-1 transition-all duration-500 ease-in-out ${close ? "w-[21px]" : "w-[15px] group-hover:w-[21px]"
-                  }`}
+                className={`h-[2px]  bg-black mb-1 transition-all duration-500 ease-in-out ${
+                  close ? "w-[21px]" : "w-[15px] group-hover:w-[21px]"
+                }`}
               ></div>
               <div
-                className={`h-[2px]  bg-black transition-all duration-500 ease-in-out ${close ? " w-[21px]" : "w-2 group-hover:w-[21px]"
-                  }`}
+                className={`h-[2px]  bg-black transition-all duration-500 ease-in-out ${
+                  close ? " w-[21px]" : "w-2 group-hover:w-[21px]"
+                }`}
               ></div>
             </div>
           </div>
@@ -98,10 +101,11 @@ const DashboardNav = ({ close, setClose }) => {
 
               <div className=" overflow-hidden  ">
                 <span
-                  className={`transition-all duration-300 ease-out  overflow-hidden  text-xl leading-6 text-[#212936] font-medium ${close
-                    ? " translate-x-[-28rem] -ml-32 "
-                    : " translate-x-0 duration-500 -ml-0"
-                    }`}
+                  className={`transition-all duration-300 ease-out  overflow-hidden  text-xl leading-6 text-[#212936] font-medium ${
+                    close
+                      ? " translate-x-[-28rem] -ml-32 "
+                      : " translate-x-0 duration-500 -ml-0"
+                  }`}
                 >
                   MyIEP <span>Buddy</span>
                 </span>
@@ -136,10 +140,11 @@ const DashboardNav = ({ close, setClose }) => {
                       </div>
                       <div className=" overflow-hidden flex h-6  w-[100%]  ">
                         <span
-                          className={`transition-all  w-[100%]  duration-500 ease-out overflow-hidden text-sm font-semibold ${close
-                            ? " translate-x-[-24rem] -ml-28  "
-                            : "duration-500 translate-x-0 pl-2"
-                            }`}
+                          className={`transition-all  w-[100%]  duration-500 ease-out overflow-hidden text-sm font-semibold ${
+                            close
+                              ? " translate-x-[-24rem] -ml-28  "
+                              : "duration-500 translate-x-0 pl-2"
+                          }`}
                         >
                           {menu?.Route}
                         </span>
