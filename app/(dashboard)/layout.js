@@ -2,19 +2,25 @@
 import { useEffect, useState } from "react";
 import DashboardNav from "../components/shared/DashboardNav";
 import DashboardTopNav from "../components/shared/DashboardTopNav";
-import { withAuth } from "../components/shared/withAuth";
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { setUserInfo } from "@/redux/features/user/userSlice";
 
 function Layout({ children }) {
+  const dispatch = useDispatch();
   const router = useRouter();
-  if (typeof window !== "undefined") {
-    const data = JSON.parse(localStorage.getItem("user"));
+  const data =
+    typeof window !== "undefined" && JSON.parse(localStorage.getItem("user"));
 
+  useEffect(() => {
     if (!data?.token) {
       router.push("/sign-in");
     }
-  }
+  }, [data?.token, router]);
 
+  useEffect(() => {
+    dispatch(setUserInfo(data));
+  }, [data, dispatch]);
   // Side Navbar
   const [close, setClose] = useState(
     typeof window !== "undefined" && JSON.parse(localStorage.getItem("close"))
@@ -26,13 +32,13 @@ function Layout({ children }) {
   }, [close]);
 
   // prevent hydration error
-  const [hydrated, setHydrated] = useState(false);
+  /*   const [hydrated, setHydrated] = useState(false);
   useEffect(() => {
     setHydrated(true);
   }, []);
   if (!hydrated) {
     return null;
-  }
+  } */
 
   return (
     <section>

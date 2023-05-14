@@ -1,3 +1,5 @@
+"use client";
+
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi";
 import { IoMdArrowDropdown } from "react-icons/io";
 import alert from "../../../../images/dashboard/admin/alert.svg";
@@ -6,8 +8,45 @@ import coder from "../../../../images/dashboard/admin/Coder.svg";
 
 import close from "../../../../images/dashboard/admin/Stroke.svg";
 import doneIcon from "../../../../images/dashboard/admin/Close Square.svg";
+import {
+  useDeleteGoalMutation,
+  useGetAllGoalsQuery,
+} from "@/redux/features/ai/aiApi";
+import { toast } from "react-hot-toast";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserInfo } from "@/redux/features/user/userSlice";
+import Link from "next/link";
 
 const Dashboard = () => {
+  const user = useSelector((state) => state?.userInfo?.person?.user);
+  const { isLoading, data: userGoal, error } = useGetAllGoalsQuery(user?.email);
+
+  const [deleteGoal, { data: deleteData }] = useDeleteGoalMutation();
+
+  if (isLoading) {
+    toast.loading("Loading...", {
+      id: "loading",
+    });
+  }
+
+  if (error) {
+    toast.dismiss("loading");
+    toast.error(error.message);
+  }
+
+  if (userGoal) {
+    toast.dismiss("loading");
+  }
+  const handleDelete = async (id) => {
+    try {
+      deleteGoal({ id, email });
+      toast.success("Goal deleted successfully");
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
   return (
     <section className="pt-[24px] bg-[#F2F2F2] pb-[57px]">
       <div className="container mx-auto xl:px-20 px-5">
@@ -56,31 +95,27 @@ const Dashboard = () => {
             <p className="text-[#5D7183] text-sm ">Student Name</p>
             <p className="text-[#5D7183] text-sm ">Summary</p>
             <div className="flex gap-2 sm:gap-4 ml-3">
-              <Image src={close} alt="close icon" />
-              <Image src={doneIcon} alt="done icon" />
+              <Image className="cursor-pointer" src={close} alt="close icon" />
+              <Image
+                className="cursor-pointer"
+                onClick={() => handleDelete(goal._id)}
+                src={doneIcon}
+                alt="done icon"
+              />
             </div>
           </div>
-          <div className="flex items-center justify-between py-[14px] px-[31px] gap-5 bg-[#F8F8F8]">
-            <h6 className="text-[#0060AF] text-base">Example 1</h6>
-            <p className="text-[#4d4d4dcc] text-base">
-              At vero eos et accusamus et iusto odio dignissimos ducimus
-              accusamus et iusto...
-            </p>
-          </div>
-          <div className="flex items-center justify-between py-[14px] px-[31px] gap-5 bg-[#FFFFFF]">
-            <h6 className="text-[#0060AF] text-base">Example 2</h6>
-            <p className="text-[#4d4d4dcc] text-base">
-              At vero eos et accusamus et iusto odio dignissimos ducimus
-              accusamus et iusto...
-            </p>
-          </div>
-          <div className="flex items-center justify-between py-[14px] px-[31px] gap-5 bg-[#F8F8F8]">
-            <h6 className="text-[#0060AF] text-base">Example 3</h6>
-            <p className="text-[#4d4d4dcc] text-base">
-              At vero eos et accusamus et iusto odio dignissimos ducimus
-              accusamus et iusto...
-            </p>
-          </div>
+          {userGoal?.data?.map((goal) => (
+            <Link
+              href={`/dashboard/${goal?._id}`}
+              key={goal._id}
+              className="flex items-center gap-[300px] py-[14px] px-[31px]  bg-[#F8F8F8]"
+            >
+              <h6 className="text-[#0060AF] text-base ">{goal?.name}</h6>
+              <p className="text-[#4d4d4dcc] text-base ">
+                {`${goal?.goal?.prompt1?.slice(0, 80)}...`}
+              </p>
+            </Link>
+          ))}
         </div>
         <div className=" px-5 pt-[111px] grid grid-cols-1 md:grid-cols-3 gap-2 items-center ">
           <div className="hidden md:block"></div>

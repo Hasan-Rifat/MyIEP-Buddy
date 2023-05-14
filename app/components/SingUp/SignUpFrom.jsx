@@ -16,6 +16,8 @@ import Image from "next/image";
 import { useUserRegisterMutation } from "@/redux/features/user/userApi";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { setUserInfo } from "@/redux/features/user/userSlice";
 const dmSans = DM_Sans({
   weight: ["400", "500", "700"],
   style: ["normal", "italic"],
@@ -24,6 +26,7 @@ const dmSans = DM_Sans({
 });
 
 const SignUpFrom = () => {
+  const dispatch = useDispatch();
   const router = useRouter();
 
   const [userRegister, { error, data, isLoading, isError }] =
@@ -65,17 +68,9 @@ const SignUpFrom = () => {
   if (data) {
     toast.remove("loading");
     toast.success("user register successfully");
-
+    dispatch(setUserInfo(data));
     typeof window !== "undefined" &&
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          token: data.token,
-          email: data.user.email,
-          name: data.user.fullName,
-          roll: data.user.roll,
-        })
-      );
+      localStorage.setItem("user", JSON.stringify(data));
 
     router.back() || "/";
   }
