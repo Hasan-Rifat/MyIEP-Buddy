@@ -16,10 +16,19 @@ import { useSelector } from "react-redux";
 const AccommodationsGenerator = () => {
   const user = useSelector((state) => state?.userInfo?.person?.user);
   const [resData, setResData] = useState(null);
-  const { isLoading, data, error } = useGetAllGoalsQuery(user?.email);
-  const [generateAccommodationText, {}] =
-    useGenerateAccommodationTextMutation();
-  const [createAccommodation, {}] = useCreateAccommodationMutation();
+  const {
+    isLoading: getAGoalLoading,
+    data: getAGoalData,
+    error: getAGoalError,
+  } = useGetAllGoalsQuery(user?.email);
+  const [
+    generateAccommodationText,
+    { isLoading: gATLoading, data: gATData, error: gATError },
+  ] = useGenerateAccommodationTextMutation();
+  const [
+    createAccommodation,
+    { isLoading: cALoading, data: cAData, error: cAError },
+  ] = useCreateAccommodationMutation();
 
   const [next, setNext] = useState(true);
   const [id, setId] = useState("");
@@ -40,6 +49,17 @@ const AccommodationsGenerator = () => {
     const promptTeachingMethods = `The Teaching Methods: An Accommodation of ${goal} for ${name} of grade ${level}, and date is ${date} area of need ${area} to achieve the ${target} with ${info}.`;
 
     try {
+      if (getAGoalLoading) {
+        toast.loading("Loading...", {
+          id: "loading",
+        });
+      }
+
+      if (getAGoalData) {
+        toast.dismiss("loading");
+        toast.success(getAGoalData?.message);
+      }
+
       // generate text
       const response = await generateAccommodationText({
         prompt1: promptLearningEnvironment,
@@ -51,12 +71,22 @@ const AccommodationsGenerator = () => {
       setResData(response.data);
       setNext(false);
     } catch (error) {
+      if (getAGoalError || gATError || cAError) {
+        toast.dismiss("loading");
+        toast.error("Something went wrong");
+      }
       toast.error(error);
     }
   };
 
   const handelSave = async () => {
     try {
+      if (gATLoading || cALoading) {
+        toast.loading("Loading...", {
+          id: "loading",
+        });
+      }
+
       toast.success("Accommodation created successfully");
 
       // Accommodation create
@@ -71,6 +101,10 @@ const AccommodationsGenerator = () => {
 
       toast.success("Goal save successfully");
     } catch (error) {
+      if (gATError || cAError) {
+        toast.dismiss("loading");
+        toast.error("Something went wrong");
+      }
       toast.error(error);
     }
   };
@@ -140,7 +174,7 @@ const AccommodationsGenerator = () => {
                 class="bg-[#F5F5F5] border border-gray-300 text-gray-900 mt-2 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 "
                 onChange={(event) => setId(event.target.value)}
               >
-                {data?.data?.map((goal) => (
+                {getAGoalData?.data?.map((goal) => (
                   <option key={goal._id} selected value={goal._id}>
                     {goal.name}
                   </option>
