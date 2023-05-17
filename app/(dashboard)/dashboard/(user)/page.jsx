@@ -24,11 +24,11 @@ const Dashboard = () => {
 
   const [deleteGoal, { data: deleteData }] = useDeleteGoalMutation();
 
-  if (isLoading) {
+  /*   if (isLoading) {
     toast.loading("Loading...", {
       id: "loading",
     });
-  }
+  } */
 
   if (error) {
     toast.dismiss("loading");

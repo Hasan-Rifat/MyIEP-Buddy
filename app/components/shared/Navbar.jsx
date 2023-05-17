@@ -48,22 +48,22 @@ export default function Navbar() {
     },
     {
       route: "Goals",
-      path: "/goals",
+      path: "/dashboard/goals-and-objectives-generator",
       id: 3,
     },
     {
       route: "Accommodations",
-      path: "/accommodations",
+      path: "/dashboard/accommodations-generator",
       id: 91,
     },
     {
       route: "Levels",
-      path: "/levels",
+      path: "/dashboard/present-levels-generator",
       id: 4,
     },
     {
       route: "Progress",
-      path: "/progress",
+      path: "/monitoring-ideas-generator",
       id: 5,
     },
 
