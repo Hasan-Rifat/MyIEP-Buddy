@@ -7,8 +7,10 @@ import { useDispatch } from "react-redux";
 import { setUserInfo } from "@/redux/features/user/userSlice";
 import { useGetPaymentByEmailQuery } from "@/redux/features/payment/paymantApi";
 import { toast } from "react-hot-toast";
+import Loading from "../components/shared/Loading";
 
 function Layout({ children }) {
+  const [loading, SetLoading] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -27,6 +29,7 @@ function Layout({ children }) {
   }, [data?.token, router]);
 
   useEffect(() => {
+    SetLoading(true);
     // user is logged in but not paid then redirect to payment page
     if (
       data?.email === paymentData?.email &&
@@ -35,11 +38,12 @@ function Layout({ children }) {
       router.push("/dashboard");
     } else if (paymentData?.status !== "active") {
       const paymentPageTimeout = setTimeout(() => {
-        toast.error("Please complete your payment");
+        // toast.error("Please complete your payment");
         router.push("/pricing");
       }, 2000);
       return () => clearTimeout(paymentPageTimeout);
     }
+    SetLoading(false);
   }, [data?.email, paymentData, router]);
 
   useEffect(() => {
@@ -64,16 +68,15 @@ function Layout({ children }) {
     return null;
   } */
 
-  if (isLoading) {
-    toast.loading("Loading...", {
-      id: "loading",
-    });
+  if (isLoading || loading) {
+    return <Loading />;
   } else if (error) {
-    toast.dismiss("loading");
     toast.error(error.data.error, {
       id: "error",
     });
   }
+
+  toast.dismiss("loading");
 
   return (
     <section>
