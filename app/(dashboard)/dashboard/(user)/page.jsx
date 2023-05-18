@@ -20,15 +20,15 @@ import Link from "next/link";
 
 const Dashboard = () => {
   const user = useSelector((state) => state?.userInfo?.person?.user);
-  const { isLoading, data: userGoal, error } = useGetAllGoalsQuery(user?.email);
+  const {
+    isLoading,
+    data: userGoal,
+    error,
+  } = useGetAllGoalsQuery(user?.email, {
+    refetchOnMountOrArgChange: true,
+  });
 
   const [deleteGoal, { data: deleteData }] = useDeleteGoalMutation();
-
-  /*   if (isLoading) {
-    toast.loading("Loading...", {
-      id: "loading",
-    });
-  } */
 
   if (error) {
     toast.dismiss("loading");
@@ -40,7 +40,7 @@ const Dashboard = () => {
   }
   const handleDelete = async (id) => {
     try {
-      deleteGoal({ id, email });
+      deleteGoal({ id, email: user?.email });
       toast.success("Goal deleted successfully");
     } catch (error) {
       toast.error(error.message);
@@ -91,30 +91,37 @@ const Dashboard = () => {
           <h4 className="text-[#616161] text-2xl mb-[10px]">My Students</h4>
         </div>
         <div className=" rounded-2xl overflow-hidden">
-          <div className="flex justify-between items-center py-[14px] px-[31px] bg-white">
-            <p className="text-[#5D7183] text-sm ">Student Name</p>
-            <p className="text-[#5D7183] text-sm ">Summary</p>
-            <div className="flex gap-2 sm:gap-4 ml-3">
-              <Image className="cursor-pointer" src={close} alt="close icon" />
-              <Image
-                className="cursor-pointer"
-                onClick={() => handleDelete(goal._id)}
-                src={doneIcon}
-                alt="done icon"
-              />
-            </div>
+          <div className="flex justify-between  py-[14px] px-[31px] bg-white">
+            <p className="text-[#5D7183] text-sm w-1/2 ">Student Name</p>
+            <p className="text-[#5D7183] text-sm w-1/2">Summary</p>
           </div>
           {userGoal?.data?.map((goal) => (
-            <Link
-              href={`/dashboard/${goal?._id}`}
+            <div
               key={goal._id}
-              className="flex items-center gap-[300px] py-[14px] px-[31px]  bg-[#F8F8F8]"
+              className="flex items-center justify-between py-[14px] px-[31px]  bg-[#F8F8F8]"
             >
-              <h6 className="text-[#0060AF] text-base ">{goal?.name}</h6>
-              <p className="text-[#4d4d4dcc] text-base ">
-                {`${goal?.goal?.prompt1?.slice(0, 80)}...`}
-              </p>
-            </Link>
+              <Link href={`/dashboard/${goal?._id}`} className="w-3/4">
+                <div className="flex items-center justify-between w-full gap-5 ">
+                  <h6 className="text-[#0060AF] text-base ">{goal?.name}</h6>
+                  <p className="text-[#4d4d4dcc] text-base text-center">
+                    {`${goal?.goal?.prompt1?.slice(0, 80)}...`}
+                  </p>
+                </div>
+              </Link>
+              <div className="flex gap-2 sm:gap-4 ml-3">
+                <Image
+                  className="cursor-pointer"
+                  src={close}
+                  alt="close icon"
+                />
+                <Image
+                  className="cursor-pointer"
+                  onClick={() => handleDelete(goal._id)}
+                  src={doneIcon}
+                  alt="done icon"
+                />
+              </div>
+            </div>
           ))}
         </div>
         <div className=" px-5 pt-[111px] grid grid-cols-1 md:grid-cols-3 gap-2 items-center ">

@@ -15,9 +15,19 @@ import { toast } from "react-hot-toast";
 const PresentGenerator = () => {
   const user = useSelector((state) => state?.userInfo?.person?.user);
   const [resData, setResData] = useState(null);
-  const { isLoading, data, error } = useGetAllGoalsQuery(user?.email);
-  const [generatePresentText, {}] = useGeneratePresentTextMutation();
-  const [createPresent, {}] = useCreatePresentMutation();
+  const {
+    isLoading: goalLoading,
+    data: goalData,
+    error: goalError,
+  } = useGetAllGoalsQuery(user?.email);
+  const [
+    generatePresentText,
+    { isLoading: pGLoading, data: pgData, error: pgError },
+  ] = useGeneratePresentTextMutation();
+  const [
+    createPresent,
+    { isLoading: cPresentLoading, data: cPresentData, error: cPresentError },
+  ] = useCreatePresentMutation();
   const [next, setNext] = useState(true);
   const [id, setId] = useState("");
 
@@ -48,7 +58,7 @@ const PresentGenerator = () => {
 
       console.log(response.data);
 
-      toast.success("Accommodation Generated Successfully");
+      // toast.success("Accommodation Generated Successfully");
 
       setResData(response.data);
       setNext(false);
@@ -61,7 +71,7 @@ const PresentGenerator = () => {
 
   const handelSave = async () => {
     try {
-      toast.success("Accommodation created successfully");
+      // toast.success("Accommodation created successfully");
 
       // Accommodation create
       const present = await createPresent({
@@ -74,11 +84,31 @@ const PresentGenerator = () => {
 
       console.log(present);
 
-      toast.success("Goal save successfully");
+      // toast.success("Goal save successfully");
     } catch (error) {
       toast.error(error);
     }
   };
+
+  if (pGLoading || cPresentLoading) {
+    toast.loading("Loading...", {
+      id: "loading",
+    });
+  }
+
+  if (goalError || pgError || cPresentError) {
+    toast.dismiss("loading");
+    toast.error(
+      goalError?.message || pgError?.message || cPresentError?.message
+    );
+  }
+
+  if (pgData || cPresentData) {
+    toast.dismiss("loading");
+    toast.success(
+      pgData?.message || (cPresentData && "present create successfully")
+    );
+  }
 
   return (
     <div className=" min-h-screen  bg-[#F2F2F2]  sm:px-10 px-2 pt-5 lg:flex items-center gap-10">
@@ -145,7 +175,7 @@ const PresentGenerator = () => {
                 class="bg-[#F5F5F5] border border-gray-300 text-gray-900 mt-2 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3  "
                 onChange={(e) => setId(e.target.value)}
               >
-                {data?.data?.map((goal) => (
+                {goalData?.data?.map((goal) => (
                   <option key={goal._id} selected value={goal._id}>
                     {goal.name}
                   </option>

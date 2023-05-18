@@ -16,9 +16,30 @@ import { useSelector } from "react-redux";
 
 const GoalsGenerator = () => {
   const user = useSelector((state) => state?.userInfo?.person?.user);
-  const [createUserData] = useCreateUserDataMutation();
-  const [generateGoalText] = useGenerateGoalTextMutation();
-  const [createGoal] = useCreateGoalMutation();
+  const [
+    createUserData,
+    {
+      isLoading: createUserDataLoading,
+      data: createUserDataData,
+      error: createUserDataError,
+    },
+  ] = useCreateUserDataMutation();
+  const [
+    generateGoalText,
+    {
+      isLoading: generateGoalTextLoading,
+      data: generateGoalTextData,
+      error: generateGoalTextError,
+    },
+  ] = useGenerateGoalTextMutation();
+  const [
+    createGoal,
+    {
+      isLoading: createGoalLoading,
+      data: createGoalData,
+      error: createGoalError,
+    },
+  ] = useCreateGoalMutation();
 
   const [next, setNext] = useState(true);
   const [resData, setResData] = useState(null);
@@ -37,9 +58,31 @@ const GoalsGenerator = () => {
     const interest = event.target.interest.value;
     const met = event.target.met.value;
 
-    const prompt1 = `SMART Goals: ${firstname}, and he is a ${grade} student, want to generate a goal for ${area}, Skill to focus on ${skills} to achieve by the ${date}, and the main objective is to become ${baseline}. He is interested in ${interest}, and the criteria to be considered ${met} `;
+    const prompt1 = `SMART Goals: Based on ${firstname}'s goal and objectives related to ${area} skills, here are some potential classroom accommodations to support ${firstname}'s learning:
 
-    const prompt2 = `Short-term objective: ${firstname}, and he is a ${grade} student, want to generate a goal for ${area}, Skill to focus on ${skills} to achieve by the ${date}, and the main objective is to become ${baseline}. He is interested in ${interest}, and the criteria to be considered ${met} `;
+- Grade: ${grade}
+- Date: ${date}
+- Baseline Performance: ${baseline}
+- Relevant Skills: ${skills}
+- Areas of Interest: ${interest}
+- Goal Met: ${met}
+
+[Provide a brief description of the student's goal and objectives]
+
+Now, generate potential accommodations to support ${firstname} in achieving [his/her] goals and objectives, taking into consideration the information provided above.`;
+
+    const prompt2 = `Short-term objective: SMART Goals: Based on ${firstname}'s goal and objectives related to ${area} skills, here are some potential classroom accommodations to support ${firstname}'s learning:
+
+  - Grade: ${grade}
+  - Date: ${date}
+  - Baseline Performance: ${baseline}
+  - Relevant Skills: ${skills}
+  - Areas of Interest: ${interest}
+  - Goal Met: ${met}
+
+  [Provide a brief description of the student's goal and objectives]
+
+  Now, generate potential accommodations to support ${firstname} in achieving [his/her] goals and objectives, taking into consideration the information provided above.`;
 
     try {
       // generate text
@@ -59,12 +102,13 @@ const GoalsGenerator = () => {
 
   const handelSave = async () => {
     try {
-      toast.success("Goal created successfully");
       // goal name create
       const data = await createUserData({
-        user: user?.email,
+        email: user?.email,
         name: interest,
       });
+
+      console.log(user?.email, "createUserDataData._id");
 
       // goal create
       const goalData = await createGoal({
@@ -72,16 +116,38 @@ const GoalsGenerator = () => {
         goal: true,
         prompt1: resData?.data?.prompt1,
         prompt2: resData?.data?.prompt2,
-        goalName: data.data.userData.name,
-        goalId: data.data.userData._id,
+        goalName: data?.data?.userData?.name,
+        id: data?.data?.userData?._id,
       });
-      console.log(goalData);
-
-      toast.success("Goal save successfully");
     } catch (error) {
       toast.error(error);
     }
   };
+
+  if (createUserDataLoading || generateGoalTextLoading || createGoalLoading) {
+    toast.loading("Loading...", {
+      id: "loading",
+    });
+  }
+
+  if (createUserDataError || generateGoalTextError || createGoalError) {
+    toast.dismiss("loading");
+    toast.error(
+      createUserDataError?.message ||
+        generateGoalTextError?.message ||
+        createGoalError?.message
+    );
+  }
+
+  if (createUserDataData || generateGoalTextData || createGoalData) {
+    toast.dismiss("loading");
+
+    toast.success(
+      createUserDataData?.message ||
+        generateGoalTextData?.message ||
+        createGoalData?.message
+    );
+  }
 
   // Rest of your code...
 
