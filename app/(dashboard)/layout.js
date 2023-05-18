@@ -23,6 +23,10 @@ function Layout({ children }) {
   } = useGetPaymentByEmailQuery(data?.user?.email);
 
   useEffect(() => {
+    dispatch(setUserInfo(data));
+  }, [data, dispatch]);
+
+  useEffect(() => {
     if (!data?.token) {
       router.push("/sign-in");
     }
@@ -40,15 +44,12 @@ function Layout({ children }) {
       const paymentPageTimeout = setTimeout(() => {
         // toast.error("Please complete your payment");
         router.push("/pricing");
-      }, 2000);
+      }, 3000);
       return () => clearTimeout(paymentPageTimeout);
     }
     SetLoading(false);
   }, [data?.email, paymentData, router]);
 
-  useEffect(() => {
-    dispatch(setUserInfo(data));
-  }, [data, dispatch]);
   // Side Navbar
   const [close, setClose] = useState(
     typeof window !== "undefined" && JSON.parse(localStorage.getItem("close"))
@@ -59,19 +60,10 @@ function Layout({ children }) {
     setClose(close);
   }, [close]);
 
-  // prevent hydration error
-  /*   const [hydrated, setHydrated] = useState(false);
-  useEffect(() => {
-    setHydrated(true);
-  }, []);
-  if (!hydrated) {
-    return null;
-  } */
-
   if (isLoading || loading) {
     return <Loading />;
   } else if (error) {
-    toast.error(error.data.error, {
+    toast.error(error?.data?.error, {
       id: "error",
     });
   }

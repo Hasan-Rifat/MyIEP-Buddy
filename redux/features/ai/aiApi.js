@@ -50,6 +50,9 @@ export const aiApi = apiSlice.injectEndpoints({
         url: `user-data/goal-generate-text`,
         method: "POST",
         body: { prompt1, prompt2 },
+        onQueryStarted: (arg, { dispatch, queryFulfilled }) => {
+          console.log(arg);
+        },
       }),
     }),
     // goal create =>

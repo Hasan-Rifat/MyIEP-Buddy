@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 
 // Image import
@@ -12,6 +12,7 @@ import {
 } from "@/redux/features/ai/aiApi";
 import { toast } from "react-hot-toast";
 import { useSelector } from "react-redux";
+import Loading from "@/app/components/shared/Loading";
 
 const AccommodationsGenerator = () => {
   const user = useSelector((state) => state?.userInfo?.person?.user);
@@ -27,7 +28,7 @@ const AccommodationsGenerator = () => {
   ] = useGenerateAccommodationTextMutation();
   const [
     createAccommodation,
-    { isLoading: cALoading, data: cAData, error: cAError },
+    { isLoading: cALoading, data: cAData, error: cAError, isSuccess },
   ] = useCreateAccommodationMutation();
 
   const [next, setNext] = useState(true);
@@ -42,52 +43,29 @@ const AccommodationsGenerator = () => {
     const date = event.target.date.value;
     const target = event.target.target.value;
     const info = event.target.info.value;
-    // console.log(goal, name, level, area, date, target, info);
 
     const promptLearningEnvironment = `The Learning Environment: An Accommodation of ${goal} for ${name} of grade ${level}, and date is ${date} area of need ${area} to achieve the ${target} with ${info}.`;
 
     const promptTeachingMethods = `The Teaching Methods: An Accommodation of ${goal} for ${name} of grade ${level}, and date is ${date} area of need ${area} to achieve the ${target} with ${info}.`;
-
     try {
-      if (getAGoalLoading) {
-        toast.loading("Loading...", {
-          id: "loading",
-        });
-      }
-
-      if (getAGoalData) {
-        toast.dismiss("loading");
-        toast.success(getAGoalData?.message);
-      }
-
       // generate text
       const response = await generateAccommodationText({
         prompt1: promptLearningEnvironment,
         prompt2: promptTeachingMethods,
       });
 
-      toast.success("Accommodation Generated Successfully");
+      // toast.success("Accommodation Generated Successfully");
 
       setResData(response.data);
       setNext(false);
     } catch (error) {
-      if (getAGoalError || gATError || cAError) {
-        toast.dismiss("loading");
-        toast.error("Something went wrong");
-      }
       toast.error(error);
     }
   };
 
   const handelSave = async () => {
     try {
-      if (gATLoading || cALoading) {
-        toast.loading("Loading...", {
-          id: "loading",
-        });
-      }
-
-      toast.success("Accommodation created successfully");
+      // toast.success("Accommodation created successfully");
 
       // Accommodation create
       const accommodation = await createAccommodation({
@@ -97,17 +75,46 @@ const AccommodationsGenerator = () => {
         prompt2: resData?.data?.prompt2,
       });
 
-      console.log(accommodation);
-
-      toast.success("Goal save successfully");
+      console.log(accommodation.data?.message);
     } catch (error) {
-      if (gATError || cAError) {
-        toast.dismiss("loading");
-        toast.error("Something went wrong");
-      }
       toast.error(error);
     }
   };
+
+  useEffect(() => {
+    if (cALoading || gATLoading) {
+      toast.loading("Loading...", {
+        id: "loading",
+      });
+      toast.dismiss("getData");
+    }
+
+    if (gATData || cAData) {
+      toast.dismiss("loading");
+      toast.success(
+        gATData?.message || (cAData && "successfully create accommodation"),
+        {
+          id: "getData",
+        }
+      );
+    }
+
+    if (getAGoalError || gATError || cAError) {
+      toast.dismiss("getData");
+      toast.dismiss("loading");
+      toast.error(
+        getAGoalError?.message || gATError?.message || cAError?.message
+      );
+    }
+  }, [
+    cAData,
+    cAError,
+    cALoading,
+    gATData,
+    gATError,
+    gATLoading,
+    getAGoalError,
+  ]);
 
   return (
     <div className=" min-h-screen  bg-[#F2F2F2]  sm:px-10 px-2 pt-5 lg:flex items-center gap-10">
@@ -292,11 +299,6 @@ const AccommodationsGenerator = () => {
             </div>
 
             <div className=" border border-[#EFEFEF] p-8  mt-10 rounded-lg mb-4 w-full">
-              <h1 className=" text-[#616161] text-[22px] font-medium ">
-                The Learning Environment
-              </h1>
-              <p className=" text-[#878787] mt-2 mb-10 text-[18px]">{}</p>
-
               <h1 className=" text-[#616161] text-[22px] font-medium ">
                 The Learning Environment
               </h1>
